@@ -1,14 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Readmy.com</title>
-    <link 
-    href="src/output.css" 
-    rel="stylesheet"
-    >
-    <link rel="stylesheet" href="assets/styles/style.css" />
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Readmy</title>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -16,110 +11,98 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-</head>
-<body>
+    <link rel="stylesheet" href="assets/styles/style.css" />
+  </head>
+  <body>
     <div id="app">
-
-        <!-- header navigation -->
+      <!-- header navigation -->
 
       <header
-      class="flex justify-between items-center px-10 py-4 bg-white shadow relative top-0 z-10"
-    >
-      <a href="#">
-        <img src="assets/images/favicon.png" alt="logo" />
-      </a>
-      <form class="flex relative">
-        <input
-          class="py-2 px-4 pr-80 border-2 border-secondary rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 focus:ring-offset-white focus:border-opacity-0 transition duration-300"
-          type="text"
-          placeholder="Search..."
-        />
-        <button
-          class="absolute right-4 top-1/2 -translate-y-1/2 rounded-r-full flex items-center justify-center"
-          type="submit"
-        >
-          <i class="fa-solid fa-search text-secondary"></i>
-        </button>
-      </form>
-
-      <div class="relative">
-        <a
-          onclick="document.querySelector('#dropdown-menu').classList.toggle('hidden')"
-          href="#"
-          id="dropdown-btn"
-          class="flex gap-2 items-center"
-        >
-          <img src="assets/images/profile.png" alt="profile" />
-          <i class="fa-solid fa-angle-down"></i>
+        class="flex justify-between items-center px-10 py-4 bg-white shadow relative top-0 z-10"
+      >
+        <a href="#">
+          <img src="assets/images/favicon.png" alt="logo" />
         </a>
+        <form class="flex relative">
+          <input
+            class="py-2 px-4 pr-8 border-2 border-secondary rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 focus:ring-offset-white focus:border-opacity-0 transition duration-300"
+            type="text"
+            placeholder="Search..."
+          />
+          <button
+            class="absolute right-4 top-1/2 -translate-y-1/2 rounded-r-full flex items-center justify-center"
+            type="submit"
+          >
+            <i class="fa-solid fa-search text-secondary"></i>
+          </button>
+        </form>
 
-        <div
-          id="dropdown-menu"
-          class="hidden absolute right-0 -bottom-[6.5rem] w-36 bg-white rounded-md py-2 shadow-sm border-[1px] border-secondary border-opacity-70"
-        >
-          <ul class="flex flex-col w-full">
-            <li
-              class="px-6 py-2 hover:bg-secondary hover:bg-opacity-30 duration-200"
-            >
-              <a href="./profile.html" class="flex gap-2 items-center">
-                <i class="fa-solid fa-user"></i>
-                <span>Profile</span>
-              </a>
-            </li>
-            <li
-              class="px-6 py-2 hover:bg-secondary hover:bg-opacity-30 duration-200"
-            >
-              <a href="#" class="flex gap-2 items-center">
-                <i class="fa-solid fa-book"></i>
-                <span>Books</span>
-              </a>
-            </li>
-            <li
-              class="px-6 py-2 hover:bg-secondary hover:bg-opacity-30 duration-200"
-            >
-              <a href="./index.html" class="flex gap-2 items-center">
-                <i class="fa-solid fa-book"></i>
-                <span>Dashboard</span>
-              </a>
-            </li>
-          </ul>
+        <div class="relative">
+          <a
+            onclick="document.querySelector('#dropdown-menu').classList.toggle('hidden')"
+            href="#"
+            id="dropdown-btn"
+            class="flex gap-2 items-center"
+          >
+            <img src="assets/images/profile.png" alt="profile" />
+            <i class="fa-solid fa-angle-down"></i>
+          </a>
+
+          <div
+            id="dropdown-menu"
+            class="hidden absolute right-0 -bottom-[6.5rem] w-36 bg-white rounded-md py-2 shadow-sm border-[1px] border-secondary border-opacity-70"
+          >
+            <ul class="flex flex-col w-full">
+              <li class="px-6 py-2 hover:bg-secondary hover:bg-opacity-30 duration-200">
+                <a href="profile.html" class="flex gap-2 items-center">
+                  <i class="fa-solid fa-user"></i>
+                  <span>Profile</span>
+                </a>
+              </li>
+              <li class="px-6 py-2 hover:bg-secondary hover:bg-opacity-30 duration-200">
+                <a href="dashboard.html" class="flex gap-2 items-center">
+                  <i class="fa-solid fa-book"></i>
+                  <span>Dashboard</span>
+                </a>
+              </li>
+            </ul>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
 
-    <!-- header navigation -->
+      <!-- header navigation -->
 
-    <!-- main section -->
+      <!-- main section -->
 
-    <main class="flex gap-6 min-h-screen p-6 bg-white">
+      <main class="flex gap-6 min-h-screen p-6 bg-white">
         <!-- sidebar -->
 
-        <aside class="w-1/12 px-4 flex flex-col justify-between">
+        <aside id="sidebar" class="w-1/6 px-4 flex flex-col justify-between">
           <div>
             <ul class="flex flex-col justify-center gap-2 mb-12">
               <li
-                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-zinc-800 hover:text-white transition duration-300"
+                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
               >
                 <i class="fa-solid fa-house"></i>
-                <a href="./home.html">Home</a>
+                <a href="index.html">Home</a>
               </li>
               <li
-                class="flex items-center jus gap-4 py-2 px-4 rounded-md hover:bg-zinc-800 hover:text-white transition duration-300"
+                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
               >
                 <i class="fa-solid fa-user"></i>
-                <a href="#">About Us</a>
+                <a href="about.html">About Us</a>
               </li>
               <li
-                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-zinc-800 hover:text-white transition duration-300"
+                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
               >
                 <i class="fa-solid fa-fire"></i>
-                <a href="#">Popular</a>
+                <a href="popular.html">Popular</a>
               </li>
               <li
-                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-zinc-800 hover:text-white transition duration-300"
+                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
               >
                 <i class="fa-solid fa-newspaper"></i>
-                <a href="#">Update</a>
+                <a href="update.html">Update</a>
               </li>
             </ul>
 
@@ -127,19 +110,19 @@
 
             <ul class="flex flex-col justify-center gap-2 mt-12">
               <li
-                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-zinc-800 hover:text-white transition duration-300"
+                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
               >
                 <i class="fa-solid fa-search"></i>
-                <a href="#">Search</a>
+                <a href="search.html">Search</a>
               </li>
               <li
-                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-zinc-800 hover:text-white transition duration-300"
+                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
               >
                 <i class="fa-solid fa-bookmark"></i>
-                <a href="#">Saved</a>
+                <a href="saved.html">Saved</a>
               </li>
               <li
-                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-zinc-800 hover:text-white transition duration-300"
+                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
               >
                 <i class="fa-solid fa-cloud-arrow-up"></i>
                 <a href="#">Upload</a>
@@ -148,13 +131,13 @@
           </div>
           <div>
             <li
-              class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-zinc-800 hover:text-white transition duration-300"
+              class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
             >
               <i class="fa-solid fa-gear"></i>
               <a href="#">Setting</a>
             </li>
             <li
-              class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-zinc-800 hover:text-white transition duration-300"
+              class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
             >
               <i class="fa-solid fa-right-from-bracket"></i>
               <a href="#">Logout</a>
@@ -164,294 +147,202 @@
 
         <!-- end of sidebar -->
 
+        <!-- main content -->
 
-       
-        <div class="flex-1 px-24 py-12">
+        <div class="flex-1">
+          <!-- hero section -->
+          <section
+            id="hero"
+            class="relative p-4 mb-8 h-[45vh] bg-[url('../images/hero.jpg')] bg-no-repeat bg-cover bg-center flex items-center rounded-lg"
+          >
+            <form class="h-full flex flex-col items-center gap-4 bg-white bg-opacity-70 rounded-md">
+              <label
+                class="w-64 h-full flex flex-col items-center justify-center px-4 py-6 rounded-lg"
+              >
+                <img src="assets/images/icon-upload.png" alt="upload" />
+                <span
+                  class="mt-4 text-base leading-normal bg-primary text-white px-4 py-1 rounded-md cursor-pointer transition duration-300"
+                  >Upload File</span
+                >
+                <input type="file" class="hidden" />
+              </label>
+            </form>
+          </section>
+          <!-- end of hero section -->
 
-            <section class="h-max mb-8">
-                <h2 class="font-bold text-lg">Dashboard</h2>
-                <div id="category-container" class="flex gap-4 my-4">
-                  <button class="px-5 py-2 bg-green-600 text-white rounded-full">
-                    ALL
-                  </button>
-                  <button
-                    class="px-5 py-2 bg-green-600 bg-opacity-70 text-white rounded-full">
-                    ...
-                  </button>
+          <!-- how to section -->
+          <section class="h-max mb-8 max-h-full">
+            <h1 class="text-2xl text-center font-bold my-4">Easy to Read and Upload Your Books</h1>
+            <!-- container -->
+            <div id="how-to-container" class="flex justify-evenly p-4">
+              <div class="w-1/3 flex flex-col items-center">
+                <div
+                  id="box"
+                  class="bg-primary relative w-36 h-36 flex justify-center items-center rounded-md shadow-md"
+                >
+                  <i class="fa-solid fa-upload text-white text-5xl"></i>
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 -bottom-4 w-0 h-0 border-l-[20px] border-l-transparent border-t-[30px] border-t-primary border-r-[20px] border-r-transparent"
+                  ></span>
                 </div>
-               
-            </section>
-                <tbody>
-                    <div class="overflow-x-auto w-full max-h-[680px]">
-                        <table class="w-full min-w-[540px]" data-tab-for="book" data-page="Published">
-                            <thead class="sticky top-0 bg-green-600 z-10">
-                                <tr>
-                                    <!-- Kolom checkbox -->
-                                    <th class="text-[12px] uppercase font-medium text-white py-4 px-8 text-center rounded-tl-md rounded-bl-md">
-                                        <!-- Checkbox di header -->
-                                    </th>
-                    
-                                    <!-- Kolom lainnya -->
-                                    <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-left">Book</th>
-                                    <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-center">Status</th>
-                                    <th class="text-[18px] uppercase font-medium text-white py-6 px-4 text-center">Like</th>
-                                    <th class="text-[18px] uppercase font-medium text-white py-6 px-4 text-center rounded-tr-md rounded-br-md">Tools</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <!-- Kolom checkbox -->
-                                    <td class="border-b border-b-gray-200 shadow-sm text-center">
-                                        <input type="checkbox" class="rounded-full size-6"> <!-- Checkbox di setiap baris -->
-                                    </td>
-                    
-                                    <!-- Kolom lainnya -->
-                                    <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
-                                        <div class="flex items-center">
-                                            <img src="./assets/images/card-book-placeholder.jpg" alt="" class="w-24 h-32 rounded object-cover block">
-                                            <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">Title Book Here</a>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-emerald-500/10 text-emerald-500 font-medium text-[12px] px-4 py-2 leading-none"> 🟢 Published</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-pink-500/10 text-pink-500 font-medium text-[12px] px-4 py-2 leading-none">♥️ 200</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b-gray-200 shadow-sm text-center">
-                                        <div>
-                                            <button class="bg-green-600 hover:bg-slate-600 text-white font-bold py-2 px-10 rounded-full mb-2">Edit</button>
-                                        </div>
-                                        <div>
-                                            <button class="bg-red-600 hover:bg-slate-600 text-white font-bold py-2 px-8 rounded-full">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <!-- Kolom checkbox -->
-                                    <td class="border-b border-b-gray-200 shadow-sm text-center">
-                                        <input type="checkbox" class="rounded-full size-6"> <!-- Checkbox di setiap baris -->
-                                    </td>
-                    
-                                    <!-- Kolom lainnya -->
-                                    <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
-                                        <div class="flex items-center">
-                                            <img src="./assets/images/card-book-placeholder.jpg" alt="" class="w-24 h-32 rounded object-cover block">
-                                            <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">Title Book Here</a>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-emerald-500/10 text-emerald-500 font-medium text-[12px] px-4 py-2 leading-none"> 🟢 Published</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-pink-500/10 text-pink-500 font-medium text-[12px] px-4 py-2 leading-none">♥️ 200</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b-gray-200 shadow-sm text-center">
-                                        <div>
-                                            <button class="bg-green-600 hover:bg-slate-600 text-white font-bold py-2 px-10 rounded-full mb-2">Edit</button>
-                                        </div>
-                                        <div>
-                                            <button class="bg-red-600 hover:bg-slate-600 text-white font-bold py-2 px-8 rounded-full">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr><tr>
-                                    <!-- Kolom checkbox -->
-                                    <td class="border-b border-b-gray-200 shadow-sm text-center">
-                                        <input type="checkbox" class="rounded-full size-6"> <!-- Checkbox di setiap baris -->
-                                    </td>
-                    
-                                    <!-- Kolom lainnya -->
-                                    <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
-                                        <div class="flex items-center">
-                                            <img src="./assets/images/card-book-placeholder.jpg" alt="" class="w-24 h-32 rounded object-cover block">
-                                            <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">Title Book Here</a>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-emerald-500/10 text-emerald-500 font-medium text-[12px] px-4 py-2 leading-none"> 🟢 Published</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-pink-500/10 text-pink-500 font-medium text-[12px] px-4 py-2 leading-none">♥️ 200</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b-gray-200 shadow-sm text-center">
-                                        <div>
-                                            <button class="bg-green-600 hover:bg-slate-600 text-white font-bold py-2 px-10 rounded-full mb-2">Edit</button>
-                                        </div>
-                                        <div>
-                                            <button class="bg-red-600 hover:bg-slate-600 text-white font-bold py-2 px-8 rounded-full">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr><tr>
-                                    <!-- Kolom checkbox -->
-                                    <td class="border-b border-b-gray-200 shadow-sm text-center">
-                                        <input type="checkbox" class="rounded-full size-6"> <!-- Checkbox di setiap baris -->
-                                    </td>
-                    
-                                    <!-- Kolom lainnya -->
-                                    <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
-                                        <div class="flex items-center">
-                                            <img src="./assets/images/card-book-placeholder.jpg" alt="" class="w-24 h-32 rounded object-cover block">
-                                            <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">Title Book Here</a>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-emerald-500/10 text-emerald-500 font-medium text-[12px] px-4 py-2 leading-none"> 🟢 Published</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-pink-500/10 text-pink-500 font-medium text-[12px] px-4 py-2 leading-none">♥️ 200</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b-gray-200 shadow-sm text-center">
-                                        <div>
-                                            <button class="bg-green-600 hover:bg-slate-600 text-white font-bold py-2 px-10 rounded-full mb-2">Edit</button>
-                                        </div>
-                                        <div>
-                                            <button class="bg-red-600 hover:bg-slate-600 text-white font-bold py-2 px-8 rounded-full">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr><tr>
-                                    <!-- Kolom checkbox -->
-                                    <td class="border-b border-b-gray-200 shadow-sm text-center">
-                                        <input type="checkbox" class="rounded-full size-6"> <!-- Checkbox di setiap baris -->
-                                    </td>
-                    
-                                    <!-- Kolom lainnya -->
-                                    <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
-                                        <div class="flex items-center">
-                                            <img src="./assets/images/card-book-placeholder.jpg" alt="" class="w-24 h-32 rounded object-cover block">
-                                            <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">Title Book Here</a>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-emerald-500/10 text-emerald-500 font-medium text-[12px] px-4 py-2 leading-none"> 🟢 Published</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-pink-500/10 text-pink-500 font-medium text-[12px] px-4 py-2 leading-none">♥️ 200</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b-gray-200 shadow-sm text-center">
-                                        <div>
-                                            <button class="bg-green-600 hover:bg-slate-600 text-white font-bold py-2 px-10 rounded-full mb-2">Edit</button>
-                                        </div>
-                                        <div>
-                                            <button class="bg-red-600 hover:bg-slate-600 text-white font-bold py-2 px-8 rounded-full">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr><tr>
-                                    <!-- Kolom checkbox -->
-                                    <td class="border-b border-b-gray-200 shadow-sm text-center">
-                                        <input type="checkbox" class="rounded-full size-6"> <!-- Checkbox di setiap baris -->
-                                    </td>
-                    
-                                    <!-- Kolom lainnya -->
-                                    <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
-                                        <div class="flex items-center">
-                                            <img src="./assets/images/card-book-placeholder.jpg" alt="" class="w-24 h-32 rounded object-cover block">
-                                            <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">Title Book Here</a>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-emerald-500/10 text-emerald-500 font-medium text-[12px] px-4 py-2 leading-none"> 🟢 Published</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-pink-500/10 text-pink-500 font-medium text-[12px] px-4 py-2 leading-none">♥️ 200</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b-gray-200 shadow-sm text-center">
-                                        <div>
-                                            <button class="bg-green-600 hover:bg-slate-600 text-white font-bold py-2 px-10 rounded-full mb-2">Edit</button>
-                                        </div>
-                                        <div>
-                                            <button class="bg-red-600 hover:bg-slate-600 text-white font-bold py-2 px-8 rounded-full">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr><tr>
-                                    <!-- Kolom checkbox -->
-                                    <td class="border-b border-b-gray-200 shadow-sm text-center">
-                                        <input type="checkbox" class="rounded-full size-6"> <!-- Checkbox di setiap baris -->
-                                    </td>
-                    
-                                    <!-- Kolom lainnya -->
-                                    <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
-                                        <div class="flex items-center">
-                                            <img src="./assets/images/card-book-placeholder.jpg" alt="" class="w-24 h-32 rounded object-cover block">
-                                            <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">Title Book Here</a>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-emerald-500/10 text-emerald-500 font-medium text-[12px] px-4 py-2 leading-none"> 🟢 Published</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-pink-500/10 text-pink-500 font-medium text-[12px] px-4 py-2 leading-none">♥️ 200</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b-gray-200 shadow-sm text-center">
-                                        <div>
-                                            <button class="bg-green-600 hover:bg-slate-600 text-white font-bold py-2 px-10 rounded-full mb-2">Edit</button>
-                                        </div>
-                                        <div>
-                                            <button class="bg-red-600 hover:bg-slate-600 text-white font-bold py-2 px-8 rounded-full">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr><tr>
-                                    <!-- Kolom checkbox -->
-                                    <td class="border-b border-b-gray-200 shadow-sm text-center">
-                                        <input type="checkbox" class="rounded-full size-6"> <!-- Checkbox di setiap baris -->
-                                    </td>
-                    
-                                    <!-- Kolom lainnya -->
-                                    <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
-                                        <div class="flex items-center">
-                                            <img src="./assets/images/card-book-placeholder.jpg" alt="" class="w-24 h-32 rounded object-cover block">
-                                            <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">Title Book Here</a>
-                                        </div>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-emerald-500/10 text-emerald-500 font-medium text-[12px] px-4 py-2 leading-none"> 🟢 Published</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b border-b-gray-200 shadow-sm text-center">
-                                        <span class="inline-block p-1 rounded-lg bg-pink-500/10 text-pink-500 font-medium text-[12px] px-4 py-2 leading-none">♥️ 200</span>
-                                    </td>
-                                    <td class="py-2 px-4 border-b-gray-200 shadow-sm text-center">
-                                        <div>
-                                            <button class="bg-green-600 hover:bg-slate-600 text-white font-bold py-2 px-10 rounded-full mb-2">Edit</button>
-                                        </div>
-                                        <div>
-                                            <button class="bg-red-600 hover:bg-slate-600 text-white font-bold py-2 px-8 rounded-full">Delete</button>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    
+                <div class="flex gap-4 items-center my-4">
+                  <div
+                    class="w-10 h-10 bg-primary rounded-full text-white text-center leading-10 font-bold"
+                  >
+                    1
+                  </div>
+                  <p class="font-bold text-lg">Upload Your Book</p>
+                </div>
+              </div>
 
-            
-                </tbody>
-            </table>
-        </div>
-        
-        <!--<div class="flex w-1/2 items-center justify-center mt-4">
-            
-            <button class="bg-gray-600 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mr-2">&lt;</button>
-        
-            
-            <div class="flex items-center">
-                <button class="bg-gray-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-1">1</button>
-                <button class="bg-gray-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-1">2</button>
-                <button class="bg-gray-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-1">3</button>
-                <button class="bg-gray-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-1">4</button>
-                <button class="bg-gray-400 hover:bg-green-600 text-white font-bold py-2 px-4 rounded mx-1">5</button>
+              <div class="w-1/3 flex flex-col items-center">
+                <div
+                  id="box"
+                  class="bg-primary relative w-36 h-36 flex justify-center items-center rounded-md shadow-md"
+                >
+                  <i class="fa-solid fa-square-plus text-white text-5xl"></i>
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 -bottom-4 w-0 h-0 border-l-[20px] border-l-transparent border-t-[30px] border-t-primary border-r-[20px] border-r-transparent"
+                  ></span>
+                </div>
+                <div class="flex gap-4 items-center my-4">
+                  <div
+                    class="w-10 h-10 bg-primary rounded-full text-white text-center leading-10 font-bold"
+                  >
+                    2
+                  </div>
+                  <p class="font-bold text-lg">Add Title & Category</p>
+                </div>
+              </div>
+
+              <div class="w-1/3 flex flex-col items-center">
+                <div
+                  id="box"
+                  class="bg-primary relative w-36 h-36 flex justify-center items-center rounded-md shadow-md"
+                >
+                  <i class="fa-solid fa-book text-white text-5xl"></i>
+                  <span
+                    class="absolute left-1/2 -translate-x-1/2 -bottom-4 w-0 h-0 border-l-[20px] border-l-transparent border-t-[30px] border-t-primary border-r-[20px] border-r-transparent"
+                  ></span>
+                </div>
+                <div class="flex gap-4 items-center my-4">
+                  <div
+                    class="w-10 h-10 bg-primary rounded-full text-white text-center leading-10 font-bold"
+                  >
+                    3
+                  </div>
+                  <p class="font-bold text-lg">Publish and Read More Book</p>
+                </div>
+              </div>
             </div>
-        
-            <button class="bg-gray-600 hover:bg-green-600 text-white font-bold py-2 px-4 rounded ml-2">&gt;</button>
-        </!--</div>-->
-        
-        
+          </section>
+          <!-- end of how to section -->
 
+          <!-- categories book section -->
+          <section class="h-max mb-8">
+            <h2 class="font-bold text-lg">Categories</h2>
+            <div id="category-container" class="flex gap-2 my-4 max-w-full overflow-auto">
+              <button class="px-5 py-2 bg-primary text-white rounded-full">Children</button>
+              <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
+                Adult
+              </button>
+              <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
+                Sport
+              </button>
+              <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
+                Game
+              </button>
+              <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
+                Politics
+              </button>
+              <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
+                History
+              </button>
+              <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
+                Comedy
+              </button>
+              <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
+                Horror
+              </button>
+              <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
+                Conspiracy
+              </button>
+              <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
+                ...
+              </button>
+            </div>
+            <div id="card-book-container" class="flex gap-4 flex-wrap">
+              <a href="#" class="w-56 h-96 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
+                <img
+                  class="w-full h-4/5 rounded-md"
+                  src="assets/images/card-book-placeholder.jpg"
+                  alt="book"
+                />
+                <div>
+                  <h4 class="font-bold">Lorem ipsum dolor sit amet.</h4>
+                  <p>Published by <span class="text-sky-500">@user</span></p>
+                </div>
+              </a>
+            </div>
+          </section>
+          <!-- end of categories book section -->
+
+          <!-- popular section -->
+          <section class="h-max mb-8">
+            <h2 class="font-bold text-lg">Popular</h2>
+
+            <div id="card-book-container" class="flex gap-4 my-4 flex-wrap">
+              <a href="#" class="w-56 h-96 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
+                <img
+                  class="w-full h-4/5 rounded-md"
+                  src="assets/images/card-book-placeholder.jpg"
+                  alt="book"
+                />
+                <div>
+                  <h4 class="font-bold">Lorem ipsum dolor sit amet.</h4>
+                  <p>Published by <span class="text-sky-500">@user</span></p>
+                </div>
+              </a>
+            </div>
+          </section>
+          <!-- end of popular section -->
+
+          <!-- update section -->
+          <section class="h-max mb-8">
+            <h2 class="font-bold text-lg">Update</h2>
+
+            <div id="card-book-container" class="flex gap-4 my-4 flex-wrap">
+              <a href="#" class="w-56 h-96 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
+                <img
+                  class="w-full h-4/5 rounded-md"
+                  src="assets/images/card-book-placeholder.jpg"
+                  alt="book"
+                />
+                <div>
+                  <h4 class="font-bold">Lorem ipsum dolor sit amet.</h4>
+                  <p>Published by <span class="text-sky-500">@user</span></p>
+                </div>
+              </a>
+            </div>
+          </section>
+          <!-- end of update section -->
+
+          <!-- ads section -->
+          <!-- <section class="h-max mb-4">
+            <div class="w-full h-4/5">
+              <img class="w-full h-4/5 rounded-md" src="./assets/images/iklan_bola.png" />
+            </div>
+          </section> -->
+          <!-- end of ads section -->
         </div>
-        
 
+        <!-- end of main content -->
+      </main>
 
-    </div>
-    <!-- footer -->
-    <footer class="py-6 px-16 border-t-2 border-primary">
+      <!-- end of main section -->
+
+      <!-- footer -->
+      <footer class="py-6 px-16 border-t-2 border-primary">
         <div class="flex justify-between mb-4">
           <a href="#">
             <img src="assets/images/favicon.png" alt="logo" />
@@ -466,25 +357,18 @@
         </div>
         <div class="text-center my-4">
           <p class="py-2">
-            "Books weave a tapestry of boundless fantasies, where every page
-            whispers secrets of enchanted realms waiting to be explored."
+            "Books weave a tapestry of boundless fantasies, where every page whispers secrets of
+            enchanted realms waiting to be explored."
           </p>
-          <p class="py-2 text-secondary">
-            &copy; 2024 Readmy and Team. All rights reserved.
-          </p>
+          <p class="py-2 text-secondary">&copy; 2024 Readmy and Team. All rights reserved.</p>
         </div>
-        <div
-          class="border-t-2 border-primary border-spacing-8 flex justify-center gap-4 pt-4"
-        >
-          <a href="#"
-            ><i class="fa-brands fa-linkedin text-3xl text-sky-700"></i
-          ></a>
-          <a href="#"
-            ><i class="fa-brands fa-instagram text-3xl text-rose-500"></i
-          ></a>
+        <div class="border-t-2 border-primary border-spacing-8 flex justify-center gap-4 pt-4">
+          <a href="#"><i class="fa-brands fa-linkedin text-3xl text-sky-700"></i></a>
+          <a href="#"><i class="fa-brands fa-instagram text-3xl text-rose-500"></i></a>
         </div>
       </footer>
       <!-- end of footer -->
-    
-</body>
+    </div>
+    <script src="assets/scripts/main.js"></script>
+  </body>
 </html>
