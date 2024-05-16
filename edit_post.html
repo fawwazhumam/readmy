@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Readmy.com</title>
+    <link 
+    href="src/output.css" 
+    rel="stylesheet"
+    >
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      .dropdown {
+          position: relative;
+          display: inline-block;
+          width: 100%;
+      }
+      .dropdown-content {
+          display: none;
+          position: absolute;
+          text-align: center;
+          background-color: white;
+          box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+          z-index: 1;
+          width: 440px;
+          padding: 10px;
+      }
+      .dropdown-content div {
+          padding: 5px;
+          cursor: pointer;
+      }
+      .dropdown-content div:hover {
+          background-color: #f1f1f1;
+      }
+      .dropdown:hover .dropdown-content {
+          display: block;
+      }
+      .selected {
+          background-color: green;
+          color: white;
+          border-radius: 4px;
+      }
+  </style>
+</head>
+<body>
+    <div id="app">
+
+        <!-- header navigation -->
+
+      <header
+      class="flex justify-between items-center px-10 py-4 bg-white shadow relative top-0 z-10"
+    >
+      <a href="#">
+        <img src="assets/images/favicon.png" alt="logo" />
+      </a>
+      <form class="flex relative">
+        <input
+          class="py-2 px-4 pr-80 border-2 border-secondary rounded-full focus:outline-none focus:ring-2 focus:ring-primary focus:ring-offset-1 focus:ring-offset-white focus:border-opacity-0 transition duration-300"
+          type="text"
+          placeholder="Search..."
+        />
+        <button
+          class="absolute right-4 top-1/2 -translate-y-1/2 rounded-r-full flex items-center justify-center"
+          type="submit"
+        >
+          <i class="fa-solid fa-search text-secondary"></i>
+        </button>
+      </form>
+
+      <div class="relative">
+        <a
+          onclick="document.querySelector('#dropdown-menu').classList.toggle('hidden')"
+          href="#"
+          id="dropdown-btn"
+          class="flex gap-2 items-center"
+        >
+          <img src="assets/images/profile.png" alt="profile" />
+          <i class="fa-solid fa-angle-down"></i>
+        </a>
+
+        <div
+          id="dropdown-menu"
+          class="hidden absolute right-0 -bottom-[6.5rem] w-36 bg-white rounded-md py-2 shadow-sm border-[1px] border-secondary border-opacity-70"
+        >
+          <ul class="flex flex-col w-full">
+            <li
+              class="px-6 py-2 hover:bg-secondary hover:bg-opacity-30 duration-200"
+            >
+              <a href="./profile.html" class="flex gap-2 items-center">
+                <i class="fa-solid fa-user"></i>
+                <span>Profile</span>
+              </a>
+            </li>
+            <li
+              class="px-6 py-2 hover:bg-secondary hover:bg-opacity-30 duration-200"
+            >
+              <a href="#" class="flex gap-2 items-center">
+                <i class="fa-solid fa-book"></i>
+                <span>Books</span>
+              </a>
+            </li>
+            <li
+              class="px-6 py-2 hover:bg-secondary hover:bg-opacity-30 duration-200"
+            >
+              <a href="./index.html" class="flex gap-2 items-center">
+                <i class="fa-solid fa-book"></i>
+                <span>Dashboard</span>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </header>
+
+    <!-- header navigation -->
+
+    <!-- main section -->
+
+    <main class="flex gap-6 min-h-screen p-6 bg-white">
+        <!-- sidebar -->
+
+        <aside class="w-1/6 px-4 flex flex-col justify-between">
+            <div>
+              <ul class="flex flex-col justify-center gap-2 mb-12">
+                <li
+                  class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
+                >
+                  <i class="fa-solid fa-house"></i>
+                  <a href="./home.html">Home</a>
+                </li>
+                <li
+                  class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
+                >
+                  <i class="fa-solid fa-user"></i>
+                  <a href="#">About Us</a>
+                </li>
+                <li
+                  class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
+                >
+                  <i class="fa-solid fa-fire"></i>
+                  <a href="#">Popular</a>
+                </li>
+                <li
+                  class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
+                >
+                  <i class="fa-solid fa-newspaper"></i>
+                  <a href="#">Update</a>
+                </li>
+              </ul>
+  
+              <div class="border-[1px] border-secondary"></div>
+  
+              <ul class="flex flex-col justify-center gap-2 mt-12">
+                <li
+                  class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
+                >
+                  <i class="fa-solid fa-search"></i>
+                  <a href="#">Search</a>
+                </li>
+                <li
+                  class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
+                >
+                  <i class="fa-solid fa-bookmark"></i>
+                  <a href="#">Saved</a>
+                </li>
+                <li
+                  class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
+                >
+                  <i class="fa-solid fa-cloud-arrow-up"></i>
+                  <a href="#">Upload</a>
+                </li>
+              </ul>
+            </div>
+            <div>
+              <li
+                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
+              >
+                <i class="fa-solid fa-gear"></i>
+                <a href="#">Setting</a>
+              </li>
+              <li
+                class="flex items-center gap-4 py-2 px-4 rounded-md hover:bg-secondary hover:text-white transition duration-300"
+              >
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <a href="#">Logout</a>
+              </li>
+            </div>
+          </aside>
+        <!--End of side bar-->
+        <!--start content-->
+        <div class="flex-1 relative">
+            <!-- Hero section -->
+            <div class="px-48 py-12">
+                <div id="card-book-container" class="flex px-24 gap-4">
+                    <a
+                      href="#"
+                      class="w-56 h-96 p-4 bg-[#fafaf9] shadow-lg rounded-lg"
+                    >
+                      <img
+                        class="w-full h-4/5 rounded-md"
+                        src="assets/images/card-book-placeholder.jpg"
+                        alt="book"
+                      />
+                      <div>
+                        <h4 class="font-bold">Lorem ipsum dolor sit amet.</h4>
+                        <p>Published by <span class="text-sky-500">@user</span></p>
+                      </div>
+                    </a>
+                  </div>
+                <!-- Profile section -->
+                
+              
+            </div>
+            <div class="px-48 py-4">
+
+                <section class="flex px-24 py-4 gap-4">
+                    <div class="w-full px-4 mb-6 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 font-bold mb-2" for="file-upload">
+                            Drag & Upload File
+                        </label>
+                        <div class="relative">
+                            <input type="file" class="hidden" id="file-upload">
+                            <label for="file-upload" class="flex gap-4 justify-between cursor-pointer bg-gray-50 text-gray-700 shadow-lg border rounded-full py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white">
+                                <input class=" bg-gray-50" placeholder="Drag and Drop here">
+                                <a class="px-4 py-2 rounded-full bg-green-600 text-white shadow-lg border-2 ">Click to upload</a>
+                            </label>
+                            <button class="hidden bg-red-600 text-white font-semibold rounded-full px-4 py-2 hover:bg-secondary hover:text-white absolute top-0 right-0 -mt-3 -mr-3" id="delete-file-btn">Delete</button>
+                        </div>
+                    </div>
+                </section>
+            
+                <section class="flex px-24 py-4 gap-4">
+            
+                    <div class="relative w-full md:w-1/2 px-4 mb-6 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 font-bold mb-2" for="grid-first-name">
+                            Drop File
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-50 text-gray-50 shadow-lg border rounded-full py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Type here...">
+                    </div>
+            
+                </section>
+            
+                <section class="flex px-24 py-4 gap-4">
+            
+                    <div class="relative w-full md:w-1/2 px-4 mb-6 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 font-bold mb-2" for="grid-first-name">
+                            Title Book
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-50 text-gray-50 shadow-lg border rounded-full py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Type here...">
+                    </div>
+            
+                </section>
+            
+            
+                <section class="flex px-24 py-4 gap-4">
+            
+                    <div class="w-full md:w-1/2 px-4 mb-6 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 font-bold mb-2" for="selected-tags">
+                            Tag
+                        </label>
+                        <div class="dropdown">
+                            <input class="appearance-none block w-full bg-gray-50 text-gray-700 shadow-lg border rounded-full py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="selected-tags" type="text" readonly placeholder="Select categories">
+                            <div class="dropdown-content rounded-xl" id="category-container">
+                                <div data-value="Adult">Adult</div>
+                                <div data-value="Children">Children</div>
+                                <div data-value="Student">Student</div>
+                                <div data-value="Writer">Writer</div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <script>
+                        document.querySelectorAll('#category-container div').forEach(item => {
+                            item.addEventListener('click', function() {
+                                this.classList.toggle('selected');
+                                updateSelectedTags();
+                            });
+                        });
+            
+                        function updateSelectedTags() {
+                            const selected = Array.from(document.querySelectorAll('#category-container .selected'))
+                                .map(item => item.getAttribute('data-value'));
+                            document.getElementById('selected-tags').value = selected.join(', ');
+                        }
+                    </script>
+            
+                </section>
+                <section class="flex px-24 py-4 gap-4">
+            
+                    <div class="relative w-full md:w-1/2 px-4 mb-6 md:mb-0">
+                        <label class="block tracking-wide text-gray-700 text-xs font-bold mb-2" for="grid-first-name">
+                            Caption
+                        </label>
+                        <input class="appearance-none block w-full bg-gray-50 text-gray-50 shadow-lg border rounded-full py-3 px-4 mb-3 leading-tight focus:outline-none focus:bg-white" id="grid-first-name" type="text" placeholder="Type here...">
+                    </div>
+            
+                </section>
+                <section class="px-24 py-4">
+                    <div hre class="px-4 items-center gap-4">
+                        <a href="#" class="shadow-lg bg-red-600 text-white font-semibold rounded-full px-4 py-2 hover:bg-secondary hover:text-white">Clear</a>
+                        <a href="#" class="shadow-lg bg-green-600 text-white font-semibold rounded-full px-4 py-2 hover:bg-secondary hover:text-white">Save</a>
+                    </div>
+                </section>
+            </div>
+    
+        </div>
+        <!--end of content-->
+    </div>
+    
+    <!-- footer -->
+    <footer class="py-6 px-16 border-t-2 border-primary">
+        <div class="flex justify-between mb-4">
+          <a href="#">
+            <img src="assets/images/favicon.png" alt="logo" />
+            <p class="font-bold">Readmy.com</p>
+          </a>
+          <div class="flex gap-4">
+            <a class="hover:text-primary duration-200" href="#">Home</a>
+            <a class="hover:text-primary duration-200" href="#">About Us</a>
+            <a class="hover:text-primary duration-200" href="#">Popular</a>
+            <a class="hover:text-primary duration-200" href="#">Update</a>
+          </div>
+        </div>
+        <div class="text-center my-4">
+          <p class="py-2">
+            "Books weave a tapestry of boundless fantasies, where every page
+            whispers secrets of enchanted realms waiting to be explored."
+          </p>
+          <p class="py-2 text-secondary">
+            &copy; 2024 Readmy and Team. All rights reserved.
+          </p>
+        </div>
+        <div
+          class="border-t-2 border-primary border-spacing-8 flex justify-center gap-4 pt-4"
+        >
+          <a href="#"
+            ><i class="fa-brands fa-linkedin text-3xl text-sky-700"></i
+          ></a>
+          <a href="#"
+            ><i class="fa-brands fa-instagram text-3xl text-rose-500"></i
+          ></a>
+        </div>
+      </footer>
+      <!-- end of footer -->
+    
+</body>
+</html>
