@@ -24,9 +24,9 @@ class HomeController extends Controller
     public function Profile()
     {
         $user = auth()->user();
-        $files = File::where('user_id', $user->id)->get(); 
+        $files = File::where('user_id', $user->id)->get();
         $totalLikes = $user->totalLikes();
-        return view('profile', compact('user', 'files', 'totalLikes')); 
+        return view('profile', compact('user', 'files', 'totalLikes'));
     }
 
     public function Dashboard()
@@ -103,7 +103,7 @@ class HomeController extends Controller
             $heroFileName = $heroFile->getClientOriginalName();
             $heroFile->move(public_path('Photo'), $heroFileName);
             $validatedData['Header_File_Name'] = $heroFileName;
-    
+
             if ($user->Header_File_Name && $user->Header_File_Name !== 'header_profile.png' && file_exists(public_path('Photo/' . $user->Header_File_Name))) {
                 unlink(public_path('Photo/' . $user->Header_File_Name));
             }
@@ -121,7 +121,7 @@ class HomeController extends Controller
         if ($query) {
             $results = File::where('title', 'LIKE', "%{$query}%")->get();
         } else {
-            $results = collect(); 
+            $results = collect();
         }
 
         return view('search', compact('results'));
@@ -152,32 +152,32 @@ class HomeController extends Controller
         $user = Auth::user();
         $followers = $user->followers;
         $followingIds = $user->followings->pluck('id')->toArray();
-    
+
         return view('followers', compact('user', 'followers', 'followingIds'));
     }
-    
+
     public function viewFollowings()
     {
         $user = Auth::user();
         $followings = $user->followings;
         $followers = $user->followers;
-    
+
         return view('followings', compact('user', 'followings', 'followers'));
     }
-    
+
     public function followBack($id)
     {
         $user = Auth::user();
         $user->followings()->attach($id);
-    
+
         return back()->with('success', 'You are now following this user.');
     }
-    
+
     public function removeFollower($id)
     {
         $user = Auth::user();
         $user->followers()->detach($id);
-    
+
         return back()->with('success', 'Follower removed.');
     }
 
@@ -192,7 +192,7 @@ class HomeController extends Controller
     public function showProfile($id)
     {
         $user = User::findOrFail($id);
-        $files = $user->files; 
+        $files = $user->files;
         $totalLikes = $user->totalLikes();
         return view('lihatprofile', compact('user', 'files', 'totalLikes'));
     }

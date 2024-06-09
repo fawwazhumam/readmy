@@ -6,7 +6,11 @@ use GuzzleHttp\Psr7\UploadedFile;
 use App\Http\Controllers\HomeController;
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = [
+        'All', 'Children', 'Adult', 'Sport', 'Game',
+        'Politics', 'History', 'Comedy', 'Horror', 'Conspiracy', '...'
+    ];
+    return view('welcome', ['categories' => $categories]);
 });
 
 Auth::routes();
