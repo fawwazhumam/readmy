@@ -2,13 +2,15 @@
 
 @section('content')
 
+
 <section class="relative min-h-[32rem] h-[80vh] max-h-[80vh] mb-8 bg-secondary rounded-lg">
   <div id="flipbook" class="h-[90%] relative flex justify-center items-center">
     <i class="fa-solid fa-angle-left py-8 px-2 absolute left-4 top-1/2 -translate-y-1/2 text-white text-5xl cursor-pointer hover:bg-black hover:bg-opacity-40 duration-300 rounded-md"></i>
 
     <!-- flipbook -->
 
-    <div id="book" class="h-[96%] w-1/4 min-w-48 bg-white shadow-white">a</div>
+    <!-- <div id="book" class="h-[96%] w-1/4 min-w-48 bg-white shadow-white">a</div> -->
+    <div id="flipbook" width="100%" height="600px"></div>
 
     <!-- flipbook -->
 
@@ -109,4 +111,34 @@
 </section>
 <!-- end of more from writer -->
 
+<!-- <script type="module" src="{{ asset('flipbook/main.js') }}"></script> -->
+
+<script src="/3dflipbook/js/jquery.min.js"></script>
+<script src="/3dflipbook/js/html2canvas.min.js"></script>
+<script src="/3dflipbook/js/three.min.js"></script>
+<script src="/3dflipbook/js/pdf.min.js"></script>
+<script type="text/javascript">
+  window.PDFJS_LOCALE = {
+    pdfJsWorker: '/3dflipbook/js/pdf.worker.js',
+    pdfJsCMapUrl: '/3dflipbook/cmaps'
+  }
+</script>
+<script src="/3dflipbook/js/3dflipbook.min.js"></script>
+<script type="text/javascript">
+  $('#flipbook').FlipBook({
+    pdf: "{{ '/storage/' . $file->File_Name }}",
+    template: {
+      html: '/3dflipbook/templates/default-book-view.html',
+      styles: [
+        '/3dflipbook/css/black-book-view.css'
+      ],
+      links: [{
+        rel: 'stylesheet',
+        href: '/3dflipbook/css/font-awesome.min.css'
+      }],
+      script: '/3dflipbook/js/default-book-view.js',
+      printStyle: undefined,
+    },
+  });
+</script>
 @endsection
