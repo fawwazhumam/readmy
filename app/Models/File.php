@@ -18,7 +18,8 @@ class File extends Model
         'Type',
         'File_Name',
         'user_id',
-        'likes'
+        'likes',
+        'report_approved'
     ];
 
     public function user()
@@ -39,5 +40,10 @@ class File extends Model
     public function getBookmarksCountAttribute()
     {
         return $this->savedByUsers()->count();
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
     }
 }

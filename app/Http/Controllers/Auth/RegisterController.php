@@ -75,6 +75,7 @@ class RegisterController extends Controller
             'Header_File_Name' => 'header_profile.png',
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'usertype' => 'user'
         ]);
     }
 

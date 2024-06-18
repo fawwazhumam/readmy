@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 use App\Models\File;
 use App\Models\User;
+use App\Models\Report;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
@@ -15,22 +16,24 @@ class UploadController extends Controller
         $req->validate([
             'file' => 'required|mimes:pdf|max:10240'
         ]);
+    
+        $file = $req->file('file');
 
-        $file = $req->file('file')->storeAs('File', $req->file('file')->getClientOriginalName());
+        $uniqueFileName = uniqid() . '.' . $file->getClientOriginalExtension();
 
-        $fileName = str_replace('File/', '', $file);
+        $file->storeAs('File', $uniqueFileName);
 
         File::create([
             'Title' => $req->title,
             'Category' => $req->category,
             'Desc' => $req->desc,
             'Type' => $req->type,
-            'File_Name' => $fileName,
-            'user_id' => Auth::id() 
+            'File_Name' => $uniqueFileName,
+            'user_id' => Auth::id()
         ]);
 
         return redirect('Dashboard')->with('success', 'File berhasil diupload!');
-    }   
+    } 
 
     public function viewData(){
         // $files = File::all();
@@ -150,5 +153,47 @@ class UploadController extends Controller
         }
         
         return response()->json($files);
+    }
+
+    public function unlikeFile(Request $request, File $file)
+    {
+        $userId = Auth::id();
+    
+        $like = $file->likes()->where('user_id', $userId)->first();
+    
+        if (!$like) {
+            return back()->with('error', 'You have not liked this file.');
+        }
+    
+        $like->delete();
+    
+        $file->decrement('likes');
+    
+        return back()->with('success', 'Like removed successfully.');
+    }    
+
+
+    public function reportFile(Request $request, $fileId)
+    {
+        $validatedData = $request->validate([
+            'category' => 'required|string|max:255',
+            'reason' => 'required|string|max:255',
+        ]);
+    
+        $report = new Report();
+        $report->file_id = $fileId;
+        $report->user_id = auth()->id();
+        $report->category = $validatedData['category'];
+        $report->reason = $validatedData['reason'];
+        $report->save();
+    
+        return redirect()->back()->with('success', 'Report submitted successfully.');
+    }
+    
+
+    public function viewReports()
+    {
+        $reports = Report::with('user', 'file')->get();
+        return view('reports.index', compact('reports'));
     }
 }

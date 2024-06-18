@@ -226,12 +226,24 @@
                                     <h4 class="font-bold">{{ $file->Title }}</h4>
                                     <p>Published by <span class="text-sky-500">{{ $file->user->First_Name }}</span></p>
                                     <p>{{ $file->created_at->format('d M Y') }}</p>
-                                    <form action="{{ route('likeFile', $file) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="text-sky-500 fa-solid fa-heart"></button>
+                                    @guest
+                                        <i class="text-sky-500 fa-solid fa-heart"></i>
                                         <span>{{ $file->likes }}</span>
-                                    </form>
+                                    @endguest
                                     @auth
+                                    @if($file->likes()->where('user_id', Auth::id())->exists())
+                                        <form action="{{ route('unlikeFile', $file) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="text-red-500 fa-solid fa-heart-broken"></button>
+                                            <span>{{ $file->likes }}</span>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('likeFile', $file) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="text-sky-500 fa-solid fa-heart"></button>
+                                            <span>{{ $file->likes }}</span>
+                                        </form>
+                                    @endif
                                         @if(Auth::user()->savedBooks->contains($file->id))
                                             <form action="{{ route('removeBook', $file->id) }}" method="POST">
                                                 @csrf
@@ -266,12 +278,24 @@
                                         <p>Published by <span class="text-sky-500">Unknown</span></p>
                                     @endif
                                     <p>{{ $file->created_at->format('d M Y') }}</p>
-                                    <form action="{{ route('likeFile', $file) }}" method="POST">
-                                        @csrf
-                                        <button type="submit" class="text-sky-500 fa-solid fa-heart"></button>
+                                    @guest
+                                        <i class="text-sky-500 fa-solid fa-heart"></i>
                                         <span>{{ $file->likes }}</span>
-                                    </form>
+                                    @endguest
                                     @auth
+                                        @if($file->likes()->where('user_id', Auth::id())->exists())
+                                            <form action="{{ route('unlikeFile', $file) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="text-red-500 fa-solid fa-heart-broken"></button>
+                                                <span>{{ $file->likes }}</span>
+                                            </form>
+                                        @else
+                                            <form action="{{ route('likeFile', $file) }}" method="POST">
+                                                @csrf
+                                                <button type="submit" class="text-sky-500 fa-solid fa-heart"></button>
+                                                <span>{{ $file->likes }}</span>
+                                            </form>
+                                        @endif
                                         @if(Auth::user()->savedBooks->contains($file->id))
                                             <form action="{{ route('removeBook', $file->id) }}" method="POST">
                                                 @csrf
@@ -303,12 +327,24 @@
                                 <h4 class="font-bold">{{ $file->Title }}</h4>
                                 <p>Published by <span class="text-sky-500">{{ $file->user->First_Name ?? 'Unknown' }}</span></p>
                                 <p>{{ $file->created_at->format('d M Y') }}</p>
-                                <form action="{{ route('likeFile', $file) }}" method="POST">
-                                    @csrf
-                                    <button type="submit" class="text-sky-500 fa-solid fa-heart"></button>
+                                @guest
+                                    <i class="text-sky-500 fa-solid fa-heart"></i>
                                     <span>{{ $file->likes }}</span>
-                                </form>
+                                @endguest
                                 @auth
+                                    @if($file->likes()->where('user_id', Auth::id())->exists())
+                                        <form action="{{ route('unlikeFile', $file) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="text-red-500 fa-solid fa-heart-broken"></button>
+                                            <span>{{ $file->likes }}</span>
+                                        </form>
+                                    @else
+                                        <form action="{{ route('likeFile', $file) }}" method="POST">
+                                            @csrf
+                                            <button type="submit" class="text-sky-500 fa-solid fa-heart"></button>
+                                            <span>{{ $file->likes }}</span>
+                                        </form>
+                                    @endif
                                     @if(Auth::user()->savedBooks->contains($file->id))
                                         <form action="{{ route('removeBook', $file->id) }}" method="POST">
                                             @csrf

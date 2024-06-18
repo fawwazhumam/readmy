@@ -2,15 +2,14 @@
 
 namespace App\Models;
 
-// use Illuminate\Contracts\Auth\MustVerifyEmail;
-
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasFactory, Notifiable, CanResetPassword;
 
@@ -31,6 +30,8 @@ class User extends Authenticatable
         'Header_File_Name',
         'email',
         'password',
+        'usertype',
+        'Post_Deleted'
     ];
 
     /**
@@ -89,5 +90,10 @@ class User extends Authenticatable
     public function totalLikes(): int
     {
         return $this->files()->withCount('likes')->get()->sum('likes_count');
+    }
+
+    public function reports()
+    {
+        return $this->hasMany(Report::class);
     }
 }

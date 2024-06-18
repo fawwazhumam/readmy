@@ -189,8 +189,39 @@
                           <button type="submit" class="px-4 py-1 bg-gray-100 font-bold rounded-full hover:bg-gray-200 shadow-sm duration-300"">Bookmark</button>
                       </form>
                   @endif
+                  <button id="reportBtn" class="px-4 py-2 bg-red-500 text-white rounded-full hover:bg-red-700">
+                      Report
+                  </button>
                 @endauth
               </div>
+            </div>
+
+            <div id="reportModal" class="fixed inset-0 bg-gray-600 bg-opacity-50 flex justify-center items-center hidden">
+                <div class="bg-white p-6 rounded-lg shadow-lg w-1/3">
+                    <h2 class="text-xl font-bold mb-4">Report Post</h2>
+                    <form action="{{ route('reportFile', $file->id) }}" method="POST">
+                        @csrf
+                        <div class="mb-4">
+                            <label for="category">Category</label>
+                            <select name="category" id="category" class="form-control p-4 rounded-md bg-gray-100 bg-opacity-70 shadow outline-primary" required>
+                                <option value="Violation">Violation</option>
+                                <option value="Pornography">Pornography</option>
+                                <option value="Racism">Racism</option>
+                                <option value="False information">False information</option>
+                                <option value="Scam">Scam</option>
+                                <option value="Sale of illegal goods">Sale of illegal goods</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label for="reason" class="block text-gray-700">Reason:</label>
+                            <textarea name="reason" id="reason" class="w-full p-2 border border-gray-300 rounded" required></textarea>
+                        </div>
+                        <div class="flex justify-end">
+                            <button type="button" id="closeModalBtn" class="px-4 py-2 bg-gray-300 rounded mr-2 hover:bg-gray-400">Cancel</button>
+                            <button type="submit" class="px-4 py-2 bg-red-500 text-white rounded hover:bg-red-700">Submit</button>
+                        </div>
+                    </form>
+                </div>
             </div>
 
             <p><i class="fa-solid fa-user"></i> Followers: {{ $file->user->followers_count }}</p>
@@ -232,6 +263,21 @@
       </main>
 
       <!-- end of main section -->
+      <script>
+          document.getElementById('reportBtn').addEventListener('click', function() {
+              document.getElementById('reportModal').classList.remove('hidden');
+          });
+
+          document.getElementById('closeModalBtn').addEventListener('click', function() {
+              document.getElementById('reportModal').classList.add('hidden');
+          });
+
+          window.addEventListener('click', function(event) {
+              if (event.target === document.getElementById('reportModal')) {
+                  document.getElementById('reportModal').classList.add('hidden');
+              }
+          });
+      </script>
 </body>
 
 @endsection
