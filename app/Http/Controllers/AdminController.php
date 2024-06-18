@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Report;
 use App\Models\File;
 use App\Models\User;
+use App\Mail\AccountDeleted;
+use Illuminate\Support\Facades\Mail;
+use App\Models\DeletedEmail;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -68,6 +71,8 @@ class AdminController extends Controller
     public function deleteUser($id)
     {
         $users = User::findOrFail($id);
+        Mail::to($users->email)->send(new AccountDeleted($users));
+        DeletedEmail::create(['email' => $users->email]);
         $users->delete();
 
         return redirect()->route('admin.viewUsers')->with('success', 'Report successfully deleted!');
@@ -94,7 +99,13 @@ class AdminController extends Controller
             'Last_Name' => ['required', 'string', 'max:255'],
             'Date' => ['required', 'date'],
             'Gender' => ['required', 'string'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users',
+                function ($attribute, $value, $fail) {
+                    if (DeletedEmail::where('email', $value)->exists()) {
+                        $fail('This email has been banned and cannot be used for registration.');
+                    }
+                }
+            ],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
