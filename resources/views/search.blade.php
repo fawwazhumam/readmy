@@ -105,15 +105,18 @@
             @if(request()->has('query'))
                 <section class="h-max mb-8">
                     <h2 class="font-bold text-lg">Search Results</h2>
-                    @if($results->isEmpty())
+                    
+                    <!-- File Results -->
+                    <h3 class="font-bold text-md mt-4">Books</h3>
+                    @if($fileResults->isEmpty())
                         <p>No books found.</p>
                     @else
                         <div id="card-book-container" class="flex gap-4 flex-wrap">
-                            @foreach ($results as $file)
+                            @foreach ($fileResults as $file)
                                 <a href="#" class="w-56 h-96 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
                                     <img class="w-full h-4/5 rounded-md" src="{{ asset('images/card-book-placeholder.jpg') }}" alt="book" />
                                     <div>
-                                        <h4 class="font-bold">{{ $file->Title }}</h4>
+                                        <h4 class="font-bold">{{ $file->title }}</h4>
                                         <p>Published by <span class="text-sky-500">{{ $file->user->First_Name ?? 'Unknown' }}</span></p>
                                         <form action="{{ route('likeFile', $file) }}" method="POST">
                                             @csrf
@@ -122,6 +125,25 @@
                                         </form>
                                     </div>
                                 </a>
+                            @endforeach
+                        </div>
+                    @endif
+                    
+                    <!-- User Results -->
+                    <h3 class="font-bold text-md mt-4">Users</h3>
+                    @if($userResults->isEmpty())
+                        <p>No users found.</p>
+                    @else
+                        <div id="user-list-container" class="flex gap-4 flex-wrap">
+                            @foreach ($userResults as $user)
+                                <div class="w-56 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
+                                    <div>
+                                        <a href="{{ route('showProfile', $user->id) }}" class="flex gap-2 items-center">
+                                            <img src="{{ asset('Photo/' . Auth::user()->File_Name) }}" style="width: 50px; height: 50px; object-fit: cover; object-position: center; border-radius: 50%" alt="profile" />
+                                            <h4 class="font-bold">{{ $user->First_Name }} {{ $user->Last_Name }}</h4>
+                                        </a>
+                                    </div>
+                                </div>
                             @endforeach
                         </div>
                     @endif
