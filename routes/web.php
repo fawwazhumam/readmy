@@ -36,7 +36,6 @@ Route::middleware(['auth', 'verified', AdminMiddleware::class])->group(function 
     Route::get('/admin/dashboardaddminplusadmin', [AdminController::class, 'addAccount'])->name('admin.register');
 
     Route::post('/admin/dashboardaddminplusadmin', [AdminController::class, 'register'])->name('admin.register.submit');
-
 });
 
 // Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -108,3 +107,12 @@ Route::post('/file/unlike/{file}', [UploadController::class, 'unlikeFile'])->nam
 Route::post('/report/{file}', [UploadController::class, 'reportFile'])->name('reportFile');
 
 Route::get('/reports', [UploadController::class, 'viewReports'])->middleware('auth', 'admin')->name('viewReports');
+
+// for testing only
+Route::get("/resetpasswordcoy", function () {
+    return view("auth.passwords.reset", ["token" => 123456]);
+});
+
+Route::get("/confirmpassword", function () {
+    return view("auth.passwords.confirm");
+});

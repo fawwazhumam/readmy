@@ -87,16 +87,16 @@
       <button type="submit" class="btn btn-primary rounded-full w-32 text-white duration-300">
         Sign Up
       </button>
-      <p class="text-sm">
+      <p class="text-sm mb-8">
         Sudah punya akun? <a class="text-primary underline hover:text-accent" href="{{ route('login') }}">Login</a>
       </p>
-      <div class="px-8 pt-4 pb-8 border-secondary w-full flex flex-col gap-4 justify-center items-center">
+      <!-- <div class="px-8 pt-4 pb-8 border-secondary w-full flex flex-col gap-4 justify-center items-center">
         <div class="divider">OR</div>
         <button type="button" class="btn btn-base-100 w-80 rounded-full shadow">
           <i class="fa-brands fa-google"></i>
           <p class="inline ml-3">Sign Up With Google</p>
         </button>
-      </div>
+      </div> -->
     </form>
   </div>
 </div>

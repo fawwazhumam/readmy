@@ -1,8 +1,8 @@
 @extends('layouts.auth')
 
 @section('content')
-<div class="min-h-screen py-12 flex justify-center items-center drawer-content p-4 bg-[url('https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-no-repeat bg-cover">
-  <div id="wrapper" class="bg-white bg-opacity-80 p-8 w-[28rem] rounded-lg border-2 border-white">
+<div class="min-h-screen py-12 flex justify-center items-center drawer-content bg-[url('https://images.pexels.com/photos/159711/books-bookstore-book-reading-159711.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1')] bg-no-repeat bg-cover">
+  <div id="wrapper" class="bg-white bg-opacity-80 p-8 md:w-[28rem] rounded-lg border-2 border-white">
     <div class="flex flex-col items-center my-10">
       <a class="w-full flex justify-center" href="/">
         <img src="{{ asset('images/favicon.png') }}" alt="logo" class="mb-4 w-1/2" />
@@ -43,18 +43,20 @@
       <p class="text-sm">
         Belum punya akun? <a class="text-primary underline hover:text-accent" href="{{ route('register') }}">Sign Up</a>
       </p>
-      <div class="px-8 pb-8 border-secondary w-full flex flex-col gap-4 justify-center items-center">
+      <div class="divider"></div>
+      <a class="text-sm mb-8 hover:underline duration-300 hover:text-primary" href="{{ route('password.request') }}">
+        {{ __('Forgot Your Password?') }}
+      </a>
+      <!-- <div class="px-8 pb-8 border-secondary w-full flex flex-col gap-4 justify-center items-center">
         <div class="divider">OR</div>
         <button type="button" class="btn btn-base-100 w-80 rounded-full shadow">
           <i class="fa-brands fa-google"></i>
           <p class="inline ml-3">Login With Google</p>
         </button>
         @if (Route::has('password.request'))
-        <a class="text-sm hover:underline duration-300 hover:text-primary" href="{{ route('password.request') }}">
-          {{ __('Forgot Your Password?') }}
-        </a>
+        
         @endif
-      </div>
+      </div> -->
     </form>
   </div>
 </div>

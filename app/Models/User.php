@@ -61,7 +61,7 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->hasMany(File::class);
     }
-    
+
     public function savedBooks()
     {
         return $this->belongsToMany(File::class, 'saved_books')->withTimestamps();
@@ -95,5 +95,10 @@ class User extends Authenticatable implements MustVerifyEmail
     public function reports()
     {
         return $this->hasMany(Report::class);
+    }
+
+    public function isFollowing($userId)
+    {
+        return $this->followings()->where('followed_id', $userId)->exists();
     }
 }

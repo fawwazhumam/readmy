@@ -74,7 +74,7 @@
     <div id="category-container" class="flex gap-2 my-4 max-w-full overflow-auto hide-scrollbar">
         <!-- categories -->
     </div>
-    <div id="card-book-container" class="p-4 flex gap-4 overflow-x-auto hide-scrollbar">
+    <div id="card-book-container" class="py-4 flex gap-4 overflow-x-auto hide-scrollbar">
         @foreach ($files as $file)
         <x-book-card :file="$file" />
         @endforeach
@@ -84,7 +84,7 @@
 <!-- popular section -->
 <section class="h-max mb-8">
     <h2 class="font-bold text-lg">Popular</h2>
-    <div class="p-4 flex gap-4 overflow-x-auto hide-scrollbar">
+    <div class="py-4 flex gap-4 overflow-x-auto hide-scrollbar">
         @foreach ($popularFiles as $file)
         <x-book-card :file="$file" />
         @endforeach
@@ -95,7 +95,7 @@
 <section class="h-max mb-8">
     <h2 class="font-bold text-lg">Latest Update</h2>
 
-    <div class="p-4 flex gap-4 overflow-x-auto hide-scrollbar">
+    <div class="py-4 flex gap-4 overflow-x-auto hide-scrollbar">
         @foreach ($lastestFiles as $file)
         <x-book-card :file="$file" />
         @endforeach

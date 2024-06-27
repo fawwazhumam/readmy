@@ -16,7 +16,8 @@
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+    <!-- sweetalert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Scripts -->
     <!-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) -->
     @vite('resources/css/app.css')
@@ -32,7 +33,7 @@
                 @yield('content')
             </div>
             <div class="drawer-side">
-                <label for="my-drawer" aria-label="close sidebar" class="drawer-overlay"></label>
+                <label for="my-drawer" aria-label="open sidebar" class="drawer-overlay"></label>
                 <ul class="menu p-4 w-64 min-h-full bg-base-100 text-base fixed md:static">
                     <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
                     <li><a href="AboutUs"><i class="fa-solid fa-users"></i> About Us</a></li>

@@ -5,19 +5,11 @@
 
 <section class="h-max mb-8">
     <h2 class="font-bold text-lg">Dashboard</h2>
-    <div id="category-container" class="flex gap-4 my-4">
-        <button class="px-5 py-2 bg-primary text-white rounded-full">
-            ALL
-        </button>
-        <button class="px-5 py-2 bg-primary bg-opacity-70 text-white rounded-full">
-            ...
-        </button>
-    </div>
 </section>
 
 <div class="overflow-x-auto w-full max-h-[680px]">
     <table class="w-full min-w-[540px]" data-tab-for="book" data-page="Published">
-        <thead class="sticky top-0 bg-primary z-10">
+        <thead class="bg-primary">
             <tr>
                 <!-- Kolom checkbox -->
                 <th class="text-[12px] uppercase font-medium text-white py-4 px-8 text-center rounded-tl-md rounded-bl-md">

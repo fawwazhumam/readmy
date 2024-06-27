@@ -1,4 +1,4 @@
-<div class="md:min-w-56 w-1/2 md:w-56 h-max bg-[#fafaf9] shadow-lg p-2 rounded-lg">
+<div class="min-w-56 w-56 md:w-56 h-max bg-[#fafaf9] shadow-lg p-2 rounded-lg">
     <!-- still no image -->
     <a href="{{ route('ReadBook', ['id' => $file->id]) }}" class="w-full h-3/4">
         <img class="w-full h-full rounded-md" src="{{ asset('images/card-book-placeholder.jpg') }}" alt="book" />
@@ -9,7 +9,7 @@
             <div class="tooltip" data-tip="{{ $file->Title }}">
                 <a href="{{ route('ReadBook', ['id' => $file->id]) }}" class="font-semibold hover:underline">{{ Str::limit($file->Title, 16) }}</a>
             </div>
-            <p class="text-gray-500 text-xs">Published by <span class="text-info">{{ $file->user ? $file->user->First_Name : 'Unknown' }}</span></p>
+            <p class="text-gray-500 text-xs">Published by <a href="{{ route('showProfile', ['id' => $file->user_id]) }}" class="text-info hover:text-sky-600 hover:underline cursor-pointer">{{ $file->user ? $file->user->First_Name : 'Unknown' }}</a></p>
         </div>
         <div class="flex items-center gap-2">
             @auth
