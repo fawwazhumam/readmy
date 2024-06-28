@@ -32,6 +32,7 @@
                     </div>
                 </div>
             </div>
+            @if(Auth::user())
             @if ($user->id !== Auth::user()->id)
             @if(Auth::user()->isFollowing($user->id))
             <form method="POST" action="{{ route('unfollow', ['id' => $user->id]) }}">
@@ -45,7 +46,11 @@
             </form>
             @endif
             @endif
+            @else
+            <a class="btn btn-primary rounded-full text-white hidden md:inline-flex mr-20" href="/login">Login to Follow</a>
+            @endif
         </div>
+        @if(Auth::user())
         @if ($user->id !== Auth::user()->id)
         @if(Auth::user()->isFollowing($user->id))
         <form method="POST" action="{{ route('unfollow', ['id' => $user->id]) }}">
@@ -58,6 +63,9 @@
             <button type="submit" class="btn btn-primary w-full md:hidden text-white rounded-full">Follow</button>
         </form>
         @endif
+        @endif
+        @else
+        <a class="btn btn-primary rounded-full text-white md:hidden mr-20" href="/login">Login to Follow</a>
         @endif
         <div class="divider md:hidden"></div>
     </section>

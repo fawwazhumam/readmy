@@ -55,10 +55,10 @@
                         <a href="{{ route('editFile', ['id' => $file->id]) }}" class="btn btn-primary text-white rounded-full w-24">Edit</a>
                     </div>
                     <div>
-                        <form action="{{ route('delete', $file->id) }}" method="POST">
+                        <form id="delete-form" action="{{ route('delete', $file->id) }}" method="POST">
                             @csrf
                             @method('DELETE')
-                            <button type="submit" class="btn btn-error text-white w-24 rounded-full" onclick="return confirm('Are you sure you want to delete this file?')">Delete</button>
+                            <button id="delete-button" class="btn btn-error text-white w-24 rounded-full">Delete</button>
                         </form>
                     </div>
                 </td>
@@ -68,4 +68,44 @@
     </table>
 </div>
 
+@if(session('success'))
+<script>
+    let timerInterval;
+    Swal.fire({
+        title: "Success",
+        text: "{{ session('success') }}",
+        icon: 'success',
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+                timer.textContent = ``;
+            }, 100);
+        },
+        willClose: () => {
+            clearInterval(timerInterval);
+        }
+    });
+</script>
+@endif
+
+<script>
+    document.getElementById('delete-button').addEventListener('click', function(event) {
+        event.preventDefault();
+        Swal.fire({
+            title: 'Are you sure?',
+            text: 'You won\'t be able to revert this!',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Yes, delete it!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById('delete-form').submit();
+            }
+        })
+    });
+</script>
 @endsection

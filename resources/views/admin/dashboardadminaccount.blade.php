@@ -6,12 +6,12 @@
 </section>
 <div class="overflow-x-auto w-full max-h-[680px]">
     <table class="w-full min-w-[540px]" data-tab-for="book" data-page="Published">
-        <thead class="sticky top-0 bg-green-600 z-10">
+        <thead class="bg-primary">
             <tr>
                 <!-- Kolom lainnya -->
                 <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-left">No</th>
                 <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-left">Name</th>
-                <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-left">Role</th>
+                <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-left">Email</th>
                 <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-center">Gender</th>
                 <th class="text-[18px] uppercase font-medium text-white py-6 px-4 text-center">Usertype</th>
                 <th class="text-[18px] uppercase font-medium text-white py-6 px-4 text-center">Email Verified Log</th>

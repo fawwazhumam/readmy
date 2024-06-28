@@ -9,7 +9,11 @@ use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\AdminMiddleware;
 
 Route::get('/', function () {
-    return view('welcome');
+    $categories = [
+        'All', 'Children', 'Adult', 'Sport', 'Game',
+        'Politics', 'History', 'Comedy', 'Horror', 'Conspiracy', '...'
+    ];
+    return view('welcome', ['categories' => $categories]);
 });
 
 Auth::routes([

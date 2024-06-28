@@ -59,5 +59,25 @@
     </section>
 </div>
 
-
+@if(session('success'))
+<script>
+    let timerInterval;
+    Swal.fire({
+        title: "Success",
+        text: "{{ session('success') }}",
+        icon: 'success',
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+                timer.textContent = ``;
+            }, 100);
+        },
+        willClose: () => {
+            clearInterval(timerInterval);
+        }
+    });
+</script>
+@endif
 @endsection

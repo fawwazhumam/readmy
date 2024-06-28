@@ -7,9 +7,8 @@
 
 <div class="overflow-x-auto w-full max-h-[680px]">
     <table class="w-full min-w-[540px]" data-tab-for="book" data-page="Published">
-        <thead class="sticky top-0 bg-green-600 z-10">
+        <thead class="bg-primary">
             <tr>
-                <!-- Kolom lainnya -->
                 <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-left">No</th>
                 <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-left">Book</th>
                 <th class="text-[18px] uppercase font-medium text-white py-6 px-8 text-left">Title</th>
@@ -22,8 +21,6 @@
         <tbody>
             @foreach($reports as $report)
             <tr>
-
-                <!-- Kolom lainnya -->
                 <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
                     <div class="flex items-center">
                         <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">{{ $loop->iteration }}</a>
@@ -56,7 +53,7 @@
                         </form>
                         <form action="{{ route('admin.approveReport', $report->id) }}" method="POST" onsubmit="return confirm('Are you sure you want to approve this report?')">
                             @csrf
-                            <button type="submit" class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded">Approve</button>
+                            <button type="submit" class="btn btn-primary rounded-btn">Approve</button>
                         </form>
                     </div>
                 </td>

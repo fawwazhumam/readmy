@@ -1,13 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
-@if (session('success'))
-<div class="alert alert-success">
-    {{ session('success') }}
-</div>
-@endif
-
 @if (session('error'))
 <div class="alert alert-danger">
     {{ session('error') }}
@@ -72,7 +65,11 @@
 <section id="read" class="h-max mb-8">
     <h2 class="font-bold text-lg">Categories</h2>
     <div id="category-container" class="flex gap-2 my-4 max-w-full overflow-auto hide-scrollbar">
-        <!-- categories -->
+        @foreach($categories as $category)
+        <button class="btn btn-primary {{ $category == 'All' ? 'rounded-full' : 'btn-outline rounded-full' }}" onclick="filterFiles('{{ $category }}')">
+            {{ $category }}
+        </button>
+        @endforeach
     </div>
     <div id="card-book-container" class="py-4 flex gap-4 overflow-x-auto hide-scrollbar">
         @foreach ($files as $file)
@@ -143,5 +140,49 @@
             .catch(error => console.error('Error fetching files:', error));
     }
 </script>
+
+@if(session('success'))
+<script>
+    let timerInterval;
+    Swal.fire({
+        title: "Success",
+        text: "{{ session('success') }}",
+        icon: 'success',
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+            const timer = Swal.getPopup().querySelector("b");
+            timerInterval = setInterval(() => {
+                timer.textContent = ``;
+            }, 100);
+        },
+        willClose: () => {
+            clearInterval(timerInterval);
+        }
+    });
+</script>
+@endif
+
+@if(session('error'))
+<script>
+    let timerInt;
+    Swal.fire({
+        title: "Error",
+        text: "{{ session('error') }}",
+        icon: 'error',
+        timer: 3000,
+        timerProgressBar: true,
+        didOpen: () => {
+            const timer = Swal.getPopup().querySelector("b");
+            timerInt = setInterval(() => {
+                timer.textContent = ``;
+            }, 100);
+        },
+        willClose: () => {
+            clearInterval(timerInt);
+        }
+    });
+</script>
+@endif
 
 @endsection
