@@ -1,0 +1,35 @@
+<section class="mb-12">
+  <h2 class="text-2xl font-bold mb-4">Key Features</h2>
+  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <div class="bg-white p-6 rounded-lg">
+      <img src="https://images.pexels.com/photos/415078/pexels-photo-415078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Personalized Recommendations" class="w-full h-40 object-cover mb-4 rounded-lg">
+      <h3 class="text-xl font-bold mb-2">Upload Book</h3>
+      <p>Upload buku atau majalah untuk dibaca secara online.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg">
+      <img src="https://images.pexels.com/photos/415078/pexels-photo-415078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Offline Reading" class="w-full h-40 object-cover mb-4 rounded-lg">
+      <h3 class="text-xl font-bold mb-2">Flip Book View</h3>
+      <p>Membaca buku secara online dengan pengalaman seperti membaca buku pada umumnya.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg">
+      <img src="https://images.pexels.com/photos/415078/pexels-photo-415078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Interactive Notes" class="w-full h-40 object-cover mb-4 rounded-lg">
+      <h3 class="text-xl font-bold mb-2">Add to Library</h3>
+      <p>Simpan buku yang ingin dibaca nanti atau dibaca ulang.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg">
+      <img src="https://images.pexels.com/photos/415078/pexels-photo-415078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Social Sharing" class="w-full h-40 object-cover mb-4 rounded-lg">
+      <h3 class="text-xl font-bold mb-2">Like and Comment</h3>
+      <p>Sukai dan beri komentar pada buku yang telah dibaca untuk mendukung Publisher.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg">
+      <img src="https://images.pexels.com/photos/415078/pexels-photo-415078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Reading Progress Tracker" class="w-full h-40 object-cover mb-4 rounded-lg">
+      <h3 class="text-xl font-bold mb-2">Custom Profile</h3>
+      <p>Custom profilmu sendiri untuk tampilan yang lebih indah.</p>
+    </div>
+    <div class="bg-white p-6 rounded-lg">
+      <img src="https://images.pexels.com/photos/415078/pexels-photo-415078.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Multi-Device Sync" class="w-full h-40 object-cover mb-4 rounded-lg">
+      <h3 class="text-xl font-bold mb-2">Read In Anytime Anywhere</h3>
+      <p>Membaca buku kapanpun dan dimanapun dengan mudah.</p>
+    </div>
+  </div>
+</section>
