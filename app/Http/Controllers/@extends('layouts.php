@@ -237,70 +237,117 @@
           </section>
           <!-- end of profile information -->
 
+          <!-- Comment Section -->
+          <section class="mb-8">
+              <div class="comments-section">
+                  <h2>Comments</h2>
 
-<!-- Comment Section -->
-<section class="mb-8">
-    <h2 class="text-xl font-bold mb-4">Comments</h2>
-    @foreach($file->comments()->whereNull('parent_id')->get() as $comment)
-        <div class="mb-4">
-            <div class="comment-header flex items-center gap-2">
-                <img src="{{ asset('Photo/' . $comment->user->File_Name) }}" alt="{{ $comment->user->First_Name }}" class="comment-avatar w-10 h-10 rounded-full object-cover">
-                <a href="{{ route('showProfile', $comment->user->id) }}" class="comment-author font-bold">{{ $comment->user->First_Name }}</a>
-            </div>
-            <p>{{ $comment->content }}</p>
-            <div class="flex gap-2">
-                <form action="{{ route('comments.like', $comment->id) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="text-blue-500">{{ $comment->likes->count() }} Like</button>
-                </form>
-                <button type="button" class="text-blue-500 reply-btn" data-id="{{ $comment->id }}" data-author="{{ $comment->user->First_Name }}">Reply</button>
-                <form action="{{ route('comments.report', $comment->id) }}" method="POST">
-                    @csrf
-                    <button type="submit" class="text-red-500">Report</button>
-                </form>
-            </div>
+                  @auth
+                  <form action="{{ route('comments.store', $file->id) }}" method="POST">
+                      @csrf
+                      <textarea name="content" rows="3" class="form-control" placeholder="Add a comment"></textarea>
+                      <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                  </form>
+                  @endauth
 
-            @foreach($comment->replies as $reply)
-                <div class="ml-4 mb-4">
-                    <div class="comment-header flex items-center gap-2">
-                        <img src="{{ asset('Photo/' . $reply->user->File_Name) }}" alt="{{ $reply->user->First_Name }}" class="comment-avatar w-10 h-10 rounded-full object-cover">
-                        <a href="{{ route('showProfile', $reply->user->id) }}" class="comment-author font-bold">{{ $reply->user->First_Name }}</a>
-                    </div>
-                    <p><strong>@</strong>{{ $reply->parent_author_first_name }} {{ $reply->content }}</p>
-                    <div class="flex gap-2">
-                        <form action="{{ route('comments.like', $reply->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="text-blue-500">{{ $reply->likes->count() }} Like</button>
-                        </form>
-                        <form action="{{ route('comments.report', $reply->id) }}" method="POST">
-                            @csrf
-                            <button type="submit" class="text-red-500">Report</button>
-                        </form>
-                        <!-- <button type="button" class="text-blue-500 reply-btn" data-id="{{ $reply->id }}" data-author="{{ $reply->user->First_Name }}">Reply</button> -->
-                    </div>
-                </div>
-            @endforeach
+                  <div class="comments-list mt-4">
+                  @foreach($file->comments()->whereNull('parent_id')->get() as $comment)
+                      <div class="ml-4">
+                          <div class="comment-header flex items-center gap-2">
+                              <img src="{{ asset('Photo/' . $comment->user->File_Name) }}" alt="{{ $comment->user->First_Name }}" class="comment-avatar w-10 h-10 rounded-full object-cover">
+                              <a href="{{ route('showProfile', $comment->user->id) }}" class="comment-author font-bold">{{ $comment->user->First_Name }}</a>
+                          </div>
+                          <p>{{ $comment->content }}</p>
+                          <div class="flex gap-2">
+                              <form action="{{ route('comments.like', $comment->id) }}" method="POST">
+                                  @csrf
+                                  <button type="submit" class="text-blue-500">{{ $comment->likes->count() }} Like</button>
+                              </form>
+                              <form action="{{ route('comments.report', $comment->id) }}" method="POST">
+                                  @csrf
+                                  <button type="submit" class="text-red-500">Report</button>
+                              </form>
+                          </div>
+                      </div>
+                      @foreach($comment->replies as $reply)
+                          <div class="reply ml-4 mt-4">
+                              <div class="comment-header flex items-center gap-2">
+                                  <img src="{{ asset('Photo/' . $reply->user->File_Name) }}" alt="{{ $reply->user->First_Name }}" class="comment-avatar w-8 h-8 rounded-full object-cover">
+                                  <a href="{{ route('showProfile', $reply->user->id) }}" class="comment-author font-bold">{{ $reply->user->First_Name }}</a>
+                              </div>
+                              <p>{{ $reply->content }}</p>
+                              <div class="comment-actions flex gap-2">
+                                  @auth
+                                  <form action="{{ route('comments.like', $reply->id) }}" method="POST" class="d-inline">
+                                      @csrf
+                                      <button type="submit" class="btn btn-sm btn-outline-primary">Like ({{ $reply->likes->count() }})</button>
+                                  </form>
+                                  <button class="btn btn-sm btn-outline-danger" onclick="showReportForm({{ $reply->id }})">Report</button>
+                                  <button class="btn btn-sm btn-outline-secondary" onclick="showReplyForm({{ $reply->id }})">Reply</button>
+                                  @endauth
+                              </div>
+                          </div>
+                      @endforeach
+                      <form id="reply-form-{{ $comment->id }}" action="{{ route('comments.store', $file->id) }}" method="POST" class="ml-4 d-none">
+                              @csrf
+                              <input type="hidden" name="parent_id" value="{{ $comment->id }}">
+                              <textarea name="content" rows="2" class="form-control" placeholder="Reply to this comment"></textarea>
+                              <button type="submit" class="btn btn-primary mt-2">Submit</button>
+                          </form>
+                  @endforeach
+                      @foreach($file->comments()->whereNull('parent_id')->get() as $comment)
+                          <!-- <div class="comment">
+                              <div class="comment-header flex items-center gap-2">
+                                  <img src="{{ asset('Photo/' . $comment->user->File_Name) }}" alt="{{ $comment->user->First_Name }}" class="comment-avatar w-10 h-10 rounded-full object-cover">
+                                  <a href="{{ route('showProfile', $comment->user->id) }}" class="comment-author font-bold">{{ $comment->user->First_Name }}</a>
+                              </div>
+                              <p>{{ $comment->content }}</p>
+                              <div class="comment-actions flex gap-2">
+                                  @auth
+                                  <form action="{{ route('comments.like', $comment->id) }}" method="POST" class="d-inline">
+                                      @csrf
+                                      <button type="submit" class="btn btn-sm btn-outline-primary">Like ({{ $comment->likes->count() }})</button>
+                                  </form>
+                                  <button class="btn btn-sm btn-outline-danger" onclick="showReportForm({{ $comment->id }})">Report</button>
+                                  <button class="btn btn-sm btn-outline-secondary" onclick="showReplyForm({{ $comment->id }})">Reply</button>
+                                  @endauth
+                              </div> -->
 
-            <div class="reply-form hidden" id="reply-form-{{ $comment->id }}">
-                <p>Replying to <span class="reply-author"></span></p>
-                <form action="{{ route('comments.store', $file->id) }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="parent_id" value="{{ $comment->id }}">
-                    <input type="hidden" name="parent_author_first_name" value="">
-                    <textarea name="content" required class="w-full p-2 border border-gray-300 rounded mb-2"></textarea>
-                    <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Reply</button>
-                </form>
-            </div>
-        </div>
-    @endforeach
+                              <!-- Replies -->
+                              <!-- @foreach($comment->replies as $reply)
+                                  <div class="reply ml-4 mt-4">
+                                      <div class="comment-header flex items-center gap-2">
+                                          <img src="{{ asset('Photo/' . $reply->user->File_Name) }}" alt="{{ $reply->user->First_Name }}" class="comment-avatar w-8 h-8 rounded-full object-cover">
+                                          <a href="{{ route('showProfile', $reply->user->id) }}" class="comment-author font-bold">{{ $reply->user->First_Name }}</a>
+                                      </div>
+                                      <p>{{ $reply->content }}</p>
+                                      <div class="comment-actions flex gap-2">
+                                          @auth
+                                          <form action="{{ route('comments.like', $reply->id) }}" method="POST" class="d-inline">
+                                              @csrf
+                                              <button type="submit" class="btn btn-sm btn-outline-primary">Like ({{ $reply->likes->count() }})</button>
+                                          </form>
+                                          <button class="btn btn-sm btn-outline-danger" onclick="showReportForm({{ $reply->id }})">Report</button>
+                                          <button class="btn btn-sm btn-outline-secondary" onclick="showReplyForm({{ $reply->id }})">Reply</button>
+                                          @endauth
+                                      </div>
+                                  </div>
+                              @endforeach -->
 
-    <form action="{{ route('comments.store', $file->id) }}" method="POST">
-        @csrf
-        <textarea name="content" required class="w-full p-2 border border-gray-300 rounded mb-2"></textarea>
-        <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded">Comment</button>
-    </form>
-</section>
+                              <!-- Reply Form -->
+                              
 
+                              <!-- Report Form -->
+                              <!-- <form id="report-form-{{ $comment->id }}" action="{{ route('comments.report', $comment->id) }}" method="POST" class="ml-4 d-none">
+                                  @csrf
+                                  <textarea name="reason" rows="2" class="form-control" placeholder="Reason for reporting"></textarea>
+                                  <button type="submit" class="btn btn-danger mt-2">Report</button>
+                              </form> -->
+                          </div>
+                      @endforeach
+                  </div>
+              </div>
+          </section>
 
           <!-- more from writer -->
           <section class="h-max mb-8">
@@ -346,16 +393,9 @@
 
       <script>
           document.querySelectorAll('.reply-btn').forEach(button => {
-              button.addEventListener('click', function() {
-                  const replyForm = document.getElementById(`reply-form-${this.dataset.id}`);
-                  const authorName = this.dataset.author;
-                  if (replyForm) {
-                      replyForm.classList.toggle('hidden');
-                      replyForm.querySelector('.reply-author').textContent = authorName;
-                      replyForm.querySelector('input[name="parent_author_first_name"]').value = authorName;
-                  } else {
-                      console.error(`Reply form with ID reply-form-${this.dataset.id} not found.`);
-                  }
+              button.addEventListener('click', () => {
+                  const replyForm = document.getElementById(`reply-form-${button.dataset.id}`);
+                  replyForm.classList.toggle('hidden');
               });
           });
 

@@ -108,3 +108,9 @@ Route::post('/file/unlike/{file}', [UploadController::class, 'unlikeFile'])->nam
 Route::post('/report/{file}', [UploadController::class, 'reportFile'])->name('reportFile');
 
 Route::get('/reports', [UploadController::class, 'viewReports'])->middleware('auth', 'admin')->name('viewReports');
+
+Route::post('/comments/{file}', [UploadController::class, 'store'])->name('comments.store');
+
+Route::post('/comments/{comment}/like', [UploadController::class, 'like'])->name('comments.like');
+
+Route::post('/comments/{comment}/report', [UploadController::class, 'report'])->name('comments.report');

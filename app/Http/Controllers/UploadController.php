@@ -1,12 +1,14 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models\File;
 use App\Models\User;
 use App\Models\Report;
+use App\Models\Comment;
+use App\Models\CommentLike;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Auth;
+use Imagick;
 
 
 class UploadController extends Controller
@@ -14,14 +16,21 @@ class UploadController extends Controller
     public function upload(Request $req)
     {
         $req->validate([
-            'file' => 'required|mimes:pdf|max:10240'
+            'file' => 'required|mimes:pdf|max:10240',
+            'img' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:10240'
         ]);
-    
+
         $file = $req->file('file');
-
         $uniqueFileName = uniqid() . '.' . $file->getClientOriginalExtension();
-
         $file->storeAs('File', $uniqueFileName);
+
+        $imagePath = null;
+        if ($req->hasFile('img')) {
+            $image = $req->file('img');
+            $uniqueImageName = uniqid() . '.' . $image->getClientOriginalExtension();
+            $image->move(public_path('Photo/cover'), $uniqueImageName);
+            $imagePath = $uniqueImageName;
+        }
 
         File::create([
             'Title' => $req->title,
@@ -29,11 +38,13 @@ class UploadController extends Controller
             'Desc' => $req->desc,
             'Type' => $req->type,
             'File_Name' => $uniqueFileName,
-            'user_id' => Auth::id()
+            'user_id' => Auth::id(),
+            'image_path' => $imagePath
         ]);
 
         return redirect('Dashboard')->with('success', 'File berhasil diupload!');
-    } 
+    }
+
 
     public function viewData(){
         // $files = File::all();
@@ -42,7 +53,7 @@ class UploadController extends Controller
     }
 
     public function viewPublicFiles(){
-        $files = File::where('Type', 'public')->with('user')->get();
+        $files = File::where('Type', 'public')->with('user')->take(5)->get();
         $lastestFiles = File::where('Type', 'public')->with('user')->orderBy('created_at', 'desc')->take(5)->get();
         $popularFiles = File::where('Type', 'public')->with('user')->orderBy('likes', 'desc')->take(5)->get();
         return view('welcome', compact('files', 'popularFiles', 'lastestFiles'));
@@ -53,20 +64,43 @@ class UploadController extends Controller
         return view('edit', compact('file'));
     }    
 
-    public function Update(Request $req, $id){
+    public function Update(Request $req, $id)
+    {
         $file = File::findOrFail($id);
     
+        // Handle file upload
         if ($req->hasFile('file')) {
             $req->validate([
-                'file' => 'required|mimes:pdf|max:1024'
+                'file' => 'required|mimes:pdf|max:10240'
             ]);
     
+            // Delete old file
+            if (!is_null($file->File_Name) && Storage::disk('File')->exists($file->File_Name)) {
             Storage::disk('File')->delete($file->File_Name);
+            }
     
-            $file->File_Name = $req->file('file')->getClientOriginalName();
+            // Store new file
+            $file->File_Name = uniqid() . '.' . $req->file('file')->getClientOriginalExtension();
             $req->file('file')->storeAs('File', $file->File_Name);
         }
     
+        // Handle image upload
+        if ($req->hasFile('photo')) {
+            $req->validate([
+                'photo' => 'required|image|max:10240'
+            ]);
+        
+            // Check if the file exists in the database and if the file exists in the public directory
+            if (!is_null($file->image_path) && file_exists(public_path('Photo/cover/' . $file->image_path))) {
+                unlink(public_path('Photo/cover/' . $file->image_path));
+            }
+        
+            // Store new image
+            $file->image_path = uniqid() . '.' . $req->file('photo')->getClientOriginalExtension();
+            $req->file('photo')->move(public_path('Photo/cover'), $file->image_path);
+        }
+    
+        // Update other fields
         $file->Title = $req->title;
         $file->Category = $req->category;
         $file->Desc = $req->desc;
@@ -172,7 +206,6 @@ class UploadController extends Controller
         return back()->with('success', 'Like removed successfully.');
     }    
 
-
     public function reportFile(Request $request, $fileId)
     {
         $validatedData = $request->validate([
@@ -189,11 +222,57 @@ class UploadController extends Controller
     
         return redirect()->back()->with('success', 'Report submitted successfully.');
     }
-    
 
     public function viewReports()
     {
         $reports = Report::with('user', 'file')->get();
         return view('reports.index', compact('reports'));
+    }
+
+    public function store(Request $request, $fileId)
+    {
+        $request->validate([
+            'content' => 'required|string',
+            'parent_id' => 'nullable|integer|exists:comments,id',
+            'parent_author_first_name' => 'nullable|string',
+        ]);
+    
+        $comment = new Comment;
+        $comment->content = $request->input('content');
+        $comment->user_id = auth()->id();
+        $comment->file_id = $fileId;
+        $comment->parent_id = $request->input('parent_id');
+        $comment->parent_author_first_name = $request->input('parent_author_first_name'); // Store the author's first name
+        $comment->save();
+    
+        return back()->with('success', 'Comment added successfully');
+    }
+
+    // Like a comment
+    public function like($commentId)
+    {
+        $comment = Comment::findOrFail($commentId);
+        
+        if (!$comment->likes()->where('user_id', Auth::id())->exists()) {
+            CommentLike::create([
+                'comment_id' => $commentId,
+                'user_id' => Auth::id()
+            ]);
+        }
+
+        return back()->with('success', 'Comment liked successfully.');
+    }
+
+    // Report a comment
+    public function report(Request $request, $commentId)
+    {
+        $request->validate([
+            'reason' => 'required|string|max:255'
+        ]);
+
+        // Create a report logic here (not implemented in the example)
+        // You may want to create a Report model and table to store this information.
+
+        return back()->with('success', 'Comment reported successfully.');
     }
 }

@@ -10,6 +10,7 @@
     <title>{{ config('app.name', 'Readmy') }}</title>
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
+    <!-- <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.png') }}"> -->
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.bunny.net">

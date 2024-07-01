@@ -142,22 +142,23 @@
                     <section class="py-12">
                         <h2 class="font-bold text-lg">My Books</h2>
                         <div id="card-book-container" class="flex gap-4 my-4">
-                        @foreach($files as $file)
-                            <a href="{{ route('viewFile', ['fileName' => $file->File_Name]) }}" class="w-56 h-96 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
-                                <img class="w-full h-4/5 rounded-md" src="{{ asset('images/card-book-placeholder.jpg') }}" alt="book"/>
-                                <div>
-                                    <h4 class="font-bold">{{$file->Title}}</h4>
-                                    <p>Published by <span class="text-sky-500">{{ $user->First_Name }}</span></p>
-                                    @if ($file->Type == 'Public')
-                                        🟢 Published
-                                    @else
-                                        🔴 Private
-                                    @endif
-                                </div>
-                            </a>
-                        @endforeach
+                            @foreach($files as $file)
+                                <a href="{{ route('viewFile', ['fileName' => $file->File_Name]) }}" class="w-56 h-96 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
+                                    <img class="w-full h-4/5 rounded-md" src="{{ asset('images/card-book-placeholder.jpg') }}" alt="book"/>
+                                    <div>
+                                        <h4 class="font-bold">{{$file->Title}}</h4>
+                                        <p>Published by <span class="text-sky-500">{{ $user->First_Name }}</span></p>
+                                        @if ($file->Type == 'Public')
+                                            🟢 Published
+                                        @else
+                                            🔴 Private
+                                        @endif
+                                    </div>
+                                </a>
+                            @endforeach
                         </div>
                     </section>
+
                 </div>
             </div>
         </main>

@@ -137,7 +137,13 @@
                     </div>
                 </div>
 
-              <div class="flex flex-col gap-4 mb-8">
+                <div class="flex flex-col gap-4 mb-8">
+                    <label for="image">Upload Image</label>
+                    <input type="file" name="img" id="imageInput" class="form-control p-4 rounded-md bg-gray-100 bg-opacity-70 shadow outline-primary" accept="image/*" onchange="previewImage(event)" />
+                    <img id="imagePreview" src="#" alt="Image Preview" class="hidden mt-4 w-1/2 h-1/2 object-contain" />
+                </div>
+
+                <div class="flex flex-col gap-4 mb-8">
                 <label for="title">Title</label>
                 <input
                   class="p-4 rounded-md bg-gray-100 bg-opacity-70 shadow outline-primary"
@@ -216,6 +222,16 @@
                 fileNameElement.textContent = 'NamaFile.pdf'; // Reset the file name display
             });
         });
+
+        function previewImage(event) {
+            const reader = new FileReader();
+            reader.onload = function(){
+                const output = document.getElementById('imagePreview');
+                output.src = reader.result;
+                output.classList.remove('hidden');
+            };
+            reader.readAsDataURL(event.target.files[0]);
+        }
     </script>
 
 </body>

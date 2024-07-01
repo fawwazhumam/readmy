@@ -117,14 +117,18 @@ class HomeController extends Controller
     public function search(Request $request)
     {
         $query = $request->input('query');
-
+    
         if ($query) {
-            $results = File::where('title', 'LIKE', "%{$query}%")->get();
+            $fileResults = File::where('title', 'LIKE', "%{$query}%")->get();
+            $userResults = User::where('First_Name', 'LIKE', "%{$query}%")
+                                ->orWhere('Last_Name', 'LIKE', "%{$query}%")
+                                ->get();
         } else {
-            $results = collect(); 
+            $fileResults = collect(); 
+            $userResults = collect();
         }
-
-        return view('search', compact('results'));
+    
+        return view('search', compact('fileResults', 'userResults'));
     }
 
     public function followUser($id)
@@ -192,8 +196,9 @@ class HomeController extends Controller
     public function showProfile($id)
     {
         $user = User::findOrFail($id);
-        $files = $user->files; 
+        $files = File::where('Type', 'Public')->where('user_id', $id)->get();
         $totalLikes = $user->totalLikes();
+        
         return view('lihatprofile', compact('user', 'files', 'totalLikes'));
     }
 }

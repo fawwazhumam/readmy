@@ -222,6 +222,7 @@
                         @foreach ($files as $file)
                             <a href="{{ route('ReadBook', ['id' => $file->id]) }}" class="w-56 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
                                 <img class="w-full h-4/5 rounded-md" src="{{ asset('images/card-book-placeholder.jpg') }}" alt="book"/>
+                                <!-- <img class="w-full h-4/5 rounded-md" src="{{ asset($file->image_path ?: 'images/card-book-placeholder.jpg') }}" alt="book"/> -->
                                 <div>
                                     <h4 class="font-bold">{{ $file->Title }}</h4>
                                     <p>Published by <span class="text-sky-500">{{ $file->user->First_Name }}</span></p>
@@ -267,70 +268,20 @@
                 <section class="h-max mb-8">
                     <h2 class="font-bold text-lg">Popular</h2>
                     <div id="card-book-container" class="flex gap-4 my-4 flex-wrap">
-                        @foreach ($popularFiles as $file)
-                            <a href="{{ route('ReadBook', ['id' => $file->id]) }}" class="w-56 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
-                                <img class="w-full h-4/5 rounded-md" src="{{ asset('images/card-book-placeholder.jpg') }}" alt="book" />
-                                <div>
-                                    <h4 class="font-bold">{{ $file->Title }}</h4>
-                                    @if ($file->user)
-                                        <p>Published by <span class="text-sky-500">{{ $file->user->First_Name }}</span></p>
-                                    @else
-                                        <p>Published by <span class="text-sky-500">Unknown</span></p>
-                                    @endif
-                                    <p>{{ $file->created_at->format('d M Y') }}</p>
-                                    @guest
-                                        <i class="text-sky-500 fa-solid fa-heart"></i>
-                                        <span>{{ $file->likes }}</span>
-                                    @endguest
-                                    @auth
-                                        @if($file->likes()->where('user_id', Auth::id())->exists())
-                                            <form action="{{ route('unlikeFile', $file) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="text-red-500 fa-solid fa-heart-broken"></button>
-                                                <span>{{ $file->likes }}</span>
-                                            </form>
-                                        @else
-                                            <form action="{{ route('likeFile', $file) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="text-sky-500 fa-solid fa-heart"></button>
-                                                <span>{{ $file->likes }}</span>
-                                            </form>
-                                        @endif
-                                        @if(Auth::user()->savedBooks->contains($file->id))
-                                            <form action="{{ route('removeBook', $file->id) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="text-red-500">Remove</button>
-                                            </form>
-                                        @else
-                                            <form action="{{ route('saveBook', $file->id) }}" method="POST">
-                                                @csrf
-                                                <button type="submit" class="text-green-500">Save</button>
-                                            </form>
-                                        @endif
-                                    @endauth
-                                </div>
-                            </a>
-                        @endforeach
-                    </div>
-                </section>
-                <!-- end of popular section -->
-
-                <!-- update section -->
-                <section class="h-max mb-8">
-                    <h2 class="font-bold text-lg">Latest Update</h2>
-
-                    <div id="card-book-container" class="flex gap-4 my-4 flex-wrap">
                     @foreach ($lastestFiles as $file)
                         <a href="{{ route('ReadBook', ['id' => $file->id]) }}" class="w-56 h-150 p-4 bg-[#fafaf9] shadow-lg rounded-lg">
-                            <img class="w-full h-4/5 rounded-md" src="{{ asset('images/card-book-placeholder.jpg') }}" alt="book" />
-                            <div>
+                            <img class="w-full h-4/5 rounded-md" src="{{ asset('Photo/cover/' . $file->image_path) }}" alt="book" />
+                            
+                            <div class="mt-2">
                                 <h4 class="font-bold">{{ $file->Title }}</h4>
                                 <p>Published by <span class="text-sky-500">{{ $file->user->First_Name ?? 'Unknown' }}</span></p>
                                 <p>{{ $file->created_at->format('d M Y') }}</p>
+
                                 @guest
                                     <i class="text-sky-500 fa-solid fa-heart"></i>
                                     <span>{{ $file->likes }}</span>
                                 @endguest
+
                                 @auth
                                     @if($file->likes()->where('user_id', Auth::id())->exists())
                                         <form action="{{ route('unlikeFile', $file) }}" method="POST">
@@ -345,6 +296,7 @@
                                             <span>{{ $file->likes }}</span>
                                         </form>
                                     @endif
+
                                     @if(Auth::user()->savedBooks->contains($file->id))
                                         <form action="{{ route('removeBook', $file->id) }}" method="POST">
                                             @csrf
