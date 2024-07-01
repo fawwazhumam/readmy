@@ -29,10 +29,10 @@
     <main class="min-h-screen">
         <div id="drawer" class="drawer lg:drawer-open">
             <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content p-4">
+            <div id="main-content" class="drawer-content p-4">
                 @yield('content')
             </div>
-            <div class="drawer-side">
+            <div class="drawer-side" id="app-drawer">
                 <label for="my-drawer" aria-label="open sidebar" class="drawer-overlay"></label>
                 <ul class="menu p-4 w-64 min-h-full bg-base-100 text-base fixed md:static">
                     <li><a href="/"><i class="fa-solid fa-house"></i> Home</a></li>
@@ -76,6 +76,14 @@
     </main>
 
     @include("partials.footer")
+
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document
+                .getElementById("main-content")
+                .classList.add("animate-[load_0.5s_ease-in-out]");
+        });
+    </script>
 </body>
 
 </html>

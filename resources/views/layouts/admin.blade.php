@@ -29,7 +29,7 @@
     <main class="min-h-screen">
         <div id="drawer" class="drawer lg:drawer-open">
             <input id="my-drawer" type="checkbox" class="drawer-toggle" />
-            <div class="drawer-content p-4">
+            <div id="main-content" class="drawer-content p-4">
                 @yield('content')
             </div>
             <div class="drawer-side">
@@ -55,6 +55,13 @@
         </div>
     </main>
     @include("partials.footer")
+    <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            document
+                .getElementById("main-content")
+                .classList.add("animate-[load_0.5s_ease-in-out]");
+        });
+    </script>
 </body>
 
 </html>

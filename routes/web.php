@@ -112,11 +112,8 @@ Route::post('/report/{file}', [UploadController::class, 'reportFile'])->name('re
 
 Route::get('/reports', [UploadController::class, 'viewReports'])->middleware('auth', 'admin')->name('viewReports');
 
-// for testing only
-Route::get("/resetpasswordcoy", function () {
-    return view("auth.passwords.reset", ["token" => 123456]);
-});
+Route::post('/comments/{file}', [UploadController::class, 'store'])->name('comments.store');
 
-Route::get("/confirmpassword", function () {
-    return view("auth.passwords.confirm");
-});
+Route::post('/comments/{comment}/like', [UploadController::class, 'like'])->name('comments.like');
+
+// Route::post('/comments/{comment}/report', [UploadController::class, 'report'])->name('comments.report');

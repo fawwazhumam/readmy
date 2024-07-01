@@ -1,9 +1,7 @@
-<div class="min-w-56 w-56 md:w-56 h-max bg-[#fafaf9] shadow-lg p-2 rounded-lg">
-    <!-- still no image -->
-    <a href="{{ route('ReadBook', ['id' => $file->id]) }}" class="w-full h-3/4">
-        <img class="w-full h-full rounded-md" src="{{ asset('images/card-book-placeholder.jpg') }}" alt="book" />
+<div class="min-w-56 w-56 md:w-56 max-h-96 min-h-96 h-max bg-[#fafaf9] shadow-lg p-2 rounded-lg">
+    <a href="{{ route('ReadBook', ['id' => $file->id]) }}" class="block w-full h-3/4 min-h-[calc(24rem - 75%)] relative">
+        <img class="w-full h-80 object-center object-cover rounded-md" src="{{ asset($file->image_path ? 'Photo/cover/' . $file->image_path : 'images/card-book-placeholder.jpg') }}" alt="book" />
     </a>
-    <!-- still no image -->
     <div class="flex justify-between items-center pt-2">
         <div>
             <div class="tooltip" data-tip="{{ $file->Title }}">

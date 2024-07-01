@@ -34,7 +34,7 @@
                 <!-- Kolom lainnya -->
                 <td class="py-4 px-4 border-b border-b-gray-200 shadow-sm">
                     <div class="flex items-center">
-                        <img src="{{ asset('images/card-book-placeholder.jpg') }}" alt="" class="w-24 h-32 rounded object-cover block">
+                        <img src="{{ asset($file->image_path ? 'Photo/cover/' . $file->image_path : 'images/card-book-placeholder.jpg') }}" alt="" class="w-24 h-32 rounded object-cover block">
                         <a href="#" class="text-gray-800 text-sm font-medium ml-2 truncate">{{$file->Title}}</a>
                     </div>
                 </td>

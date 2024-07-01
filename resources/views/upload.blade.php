@@ -7,7 +7,7 @@
 <section id="upload" class="flex justify-center">
     <form class="w-4/5 max-w-7xl" action="/Upload" method="post" enctype="multipart/form-data">
         @csrf
-        <div class="bg-gray-100 w-full h-72 mb-8 flex flex-col items-center gap-4 bg-opacity-70 rounded-lg border-2 border-dashed">
+        <div id="upload-flipbook" class="bg-gray-100 w-full h-72 mb-8 flex flex-col items-center gap-4 bg-opacity-70 rounded-lg border-2 border-dashed">
             <label class="w-full max-w-[50vw] h-full flex flex-col items-center justify-center px-4 py-6 rounded-lg">
                 <img src="{{ asset('images/icon-upload.png') }}" alt="upload" />
                 <p>
@@ -25,6 +25,12 @@
                     Delete
                 </button>
             </div>
+        </div>
+
+        <div class="flex flex-col gap-4 mb-8">
+            <label for="image">Upload Cover</label>
+            <input type="file" name="img" id="imageInput" class="file-input file-input-bordered file-input-primary w-full max-w-full" accept="image/*" onchange="previewImage(event)" />
+            <img id="imagePreview" src="#" alt="Image Preview" class="hidden mt-4 w-1/2 h-1/2 object-contain" />
         </div>
 
         <div class="flex flex-col gap-4 mb-8">
@@ -85,7 +91,4 @@
         });
     });
 </script>
-
-
-
 @endsection

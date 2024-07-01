@@ -7,7 +7,16 @@ export default {
     "./resources/**/*.blade.php",
     "./resources/**/*.js",
     "./resources/**/*.vue",],
-  theme: {},
+  theme: {
+    extend: {
+      keyframes: {
+        load: {
+          "0%": { opacity: "0", transform: "translateY(-10px)" },
+          "100%": { opacity: "1", transform: "translateY(0)" },
+        },
+      },
+    }
+  },
   plugins: [daisyui],
 
   daisyui: {

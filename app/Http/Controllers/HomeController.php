@@ -13,7 +13,7 @@ class HomeController extends Controller
 {
     public function __construct()
     {
-        $this->middleware('auth')->except(['index', 'About', 'Popular', 'LatestUpdate', 'showProfile']);
+        $this->middleware('auth')->except(['index', 'About', 'Popular', 'LatestUpdate', 'showProfile', 'ReadBook']);
     }
 
     public function index()
@@ -196,7 +196,7 @@ class HomeController extends Controller
     public function showProfile($id)
     {
         $user = User::findOrFail($id);
-        $files = $user->files;
+        $files = File::where('Type', 'Public')->where('user_id', $id)->get();
         $totalLikes = $user->totalLikes();
         return view('lihatprofile', compact('user', 'files', 'totalLikes'));
     }

@@ -12,11 +12,28 @@
         <section class="flex py-4 gap-4">
             <div class="w-full px-4 md:mb-0">
                 <label class="block tracking-wide text-gray-700 font-bold mb-2" for="file-upload">
-                    Drag & Upload File
+                    Drag & Upload New File
                 </label>
                 <div class="relative">
                     <label for="file-upload" class="flex gap-4 justify-between cursor-pointer bg-gray-50 text-gray-700 shadow-lg border rounded-full py-3 px-4 leading-tight focus:outline-none focus:bg-white">
                         <input type="file" class="hidden" id="file-upload" name="file">
+                        <span id="file-name" class="bg-gray-50">Drag and Drop here</span>
+                        <a class="px-4 py-2 rounded-full bg-primary text-white shadow-lg border-2">Upload</a>
+                    </label>
+
+                    <button type="button" class="hidden bg-red-600 text-white font-semibold rounded-full px-4 py-2 hover:bg-secondary hover:text-white absolute top-0 right-0 -mt-3 -mr-3" id="delete-file-btn">Delete</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="flex py-4 gap-4">
+            <div class="w-full px-4 md:mb-0">
+                <label class="block tracking-wide text-gray-700 font-bold mb-2" for="file-upload">
+                    Drag & Upload New Cover
+                </label>
+                <div class="relative">
+                    <label for="photo-upload" class="flex gap-4 justify-between cursor-pointer bg-gray-50 text-gray-700 shadow-lg border rounded-full py-3 px-4 leading-tight focus:outline-none focus:bg-white">
+                        <input type="file" class="hidden" id="photo-upload" name="photo">
                         <span id="file-name" class="bg-gray-50">Drag and Drop here</span>
                         <a class="px-4 py-2 rounded-full bg-primary text-white shadow-lg border-2">Upload</a>
                     </label>

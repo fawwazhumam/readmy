@@ -19,7 +19,8 @@ class File extends Model
         'File_Name',
         'user_id',
         'likes',
-        'report_approved'
+        'report_approved',
+        'image_path'
     ];
 
     public function user()
@@ -45,5 +46,15 @@ class File extends Model
     public function reports()
     {
         return $this->hasMany(Report::class);
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(Comment::class);
+    }
+
+    public function commentlikes()
+    {
+        return $this->hasMany(CommentLike::class);
     }
 }
